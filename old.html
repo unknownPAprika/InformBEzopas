@@ -3,6 +3,7 @@
 <html lang="ru" dir="ltr" class="vkui--vkAccessibility--light vkui" style="--scroll-fixed-width: 1904px; --layout-width: 960px; --page-body-width: 960px;">
 <head class="push_notifier_supported">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <link rel="shortcut icon" href="https://vk.ru/images/icons/favicons/fav_logo.ico?8">
@@ -1135,6 +1136,240 @@
     </style>
     <link rel="stylesheet" type="text/css" href="./old_files/4d3e1360.css">
     <script src="./old_files/ads_light.1112d033.js.Без названия" type="module"></script>
+    <style id="mobile-overrides">
+        /* ============================================================
+        АДАПТАЦИЯ old.html ПОД МОБИЛЬНЫЕ
+        Перекрывает стили VK. Работает только на экранах ≤ 640px.
+        На десктопе всё остаётся как было.
+        ============================================================ */
+
+        /* ---------- Планшеты и телефоны ---------- */
+        @media (max-width: 640px) {
+
+            /* 1. Базовые отступы страницы */
+            body.index_page {
+                padding: 0 !important;
+            }
+
+                body.index_page #content {
+                    padding: 0 !important;
+                    max-width: 100% !important;
+                }
+
+            /* 2. Отключаем горизонтальный скролл */
+            html, body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+            }
+
+            /* 3. Верхняя шапка — уменьшаем */
+            .Header__header--I9KX4 {
+                padding: 8px 12px !important;
+                height: auto !important;
+            }
+
+            .Header__search--O0maF,
+            .vkuiSearch__host {
+                width: 100% !important;
+                max-width: none !important;
+            }
+
+            /* Скрываем кнопку "Создать страницу для бизнеса" на телефоне */
+            .vkit-nxPS7d {
+                display: none !important;
+            }
+
+            /* 4. Основная колонка — на всю ширину */
+            .vkuiSplitLayout__inner {
+                padding: 0 !important;
+                display: block !important;
+                min-height: auto !important;
+            }
+
+            .vkuiSplitCol__host {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .vkuiPanel__host,
+            .vkuiPanel__in,
+            .vkuiInternalPanel__in,
+            .vkuiPanel__centered,
+            .vkui-flex-basis,
+            .vkit-r61uec,
+            .vkit-RZbGdi {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* 5. Карточка формы — без рамки, на всю ширину */
+            .vkuiPanel__modeCard {
+                border-radius: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+
+            .vkuiPanel__in {
+                padding: 16px !important;
+            }
+
+            /* 6. Логотип VK и заголовок */
+            .vkuiPlaceholder__host {
+                padding: 12px 0 4px !important;
+            }
+
+            .vkuiPlaceholder__icon svg {
+                width: 56px !important;
+                height: 56px !important;
+            }
+
+            .vkuiPlaceholder__title,
+            .vkuiTitle__level2 {
+                font-size: 20px !important;
+                text-align: center !important;
+                display: block !important;
+            }
+
+            /* 7. Вкладки Телефон/Почта — на всю ширину */
+            .vkuiSegmentedControl__host {
+                width: 100% !important;
+            }
+
+            .vkuiSegmentedControl__in {
+                width: 100% !important;
+            }
+
+            /* 8. Поля ввода — крупные, удобные для пальца */
+            input.vkuiInput__el,
+            input.vkuiUnstyledTextField__host {
+                font-size: 16px !important; /* 16px — чтобы iOS не зумил */
+                padding: 14px 12px !important;
+                height: auto !important;
+                min-height: 48px !important;
+            }
+
+            .vkuiFormField__host {
+                min-height: 48px !important;
+            }
+
+            /* Поле с флагом — уменьшаем иконку страны */
+            .PhoneInput-module_phoneInput_numberIconOuter__9A2hk {
+                left: 4px !important;
+                height: 24px !important;
+                margin-right: 8px !important;
+            }
+
+            /* 9. Кнопки — крупные */
+            .vkuiButton__host {
+                min-height: 48px !important;
+                font-size: 16px !important;
+                padding: 12px 16px !important;
+                width: 100% !important;
+            }
+
+                /* Отключаем hover-эффекты на тач-устройствах (чтобы не залипали) */
+                .vkuiButton__host:hover,
+                .vkuiTappable__host:hover {
+                    transform: none !important;
+                }
+
+            /* 10. Чекбокс «Сохранить вход» */
+            .EnterPhoneOrMailForm-module_checkboxRowContainer__L96Y- {
+                margin-left: 0 !important;
+                padding: 8px 4px !important;
+            }
+
+            /* 11. Разделитель «или с помощью» */
+            .EnterPhoneOrMailForm-module_separatorDescription__2zKD2 {
+                padding: 0 12px !important;
+                font-size: 13px !important;
+            }
+
+            /* 12. Нижний футер — компактнее */
+            .vkuiFixedLayout__verticalBottom {
+                position: static !important;
+                padding: 16px !important;
+            }
+
+            .vkit-UWfMMd {
+                padding: 0 !important;
+            }
+
+            .vkuiFixedLayout__verticalBottom .vkuiFlex__host {
+                flex-direction: column !important;
+                gap: 8px !important;
+                text-align: center !important;
+            }
+
+            .vkuiFixedLayout__verticalBottom a,
+            .vkuiFixedLayout__verticalBottom span[role="button"] {
+                font-size: 12px !important;
+            }
+
+            /* 13. Ссылка «Помощь» под формой */
+            .vkit-b0dQw7.vkit-beYBIk.vkit-HZ01vl {
+                display: block !important;
+                text-align: center !important;
+                margin-top: 8px !important;
+                font-size: 13px !important;
+            }
+
+            /* 14. Стираем декоративный SVG-фон VK */
+            .vkit-9Eh92A.vkit-1jr0Aq {
+                display: none !important;
+            }
+
+            /* 15. Убираем пустой правый блок (там обычно ничего) */
+            .vkuiSplitLayout__innerCenter > *:empty {
+                display: none !important;
+            }
+
+            /* 16. Текст политики под формой */
+            .Policies__root--MitF1 {
+                font-size: 11px !important;
+                line-height: 1.4 !important;
+                display: block !important;
+                text-align: center !important;
+                padding: 0 8px !important;
+            }
+
+            /* 17. Скрываем «Наверх» (на телефоне не нужно) */
+            #stl_left, #stl_side {
+                display: none !important;
+            }
+        }
+
+        /* ---------- Очень маленькие экраны ---------- */
+        @media (max-width: 380px) {
+            .vkuiPanel__in {
+                padding: 12px !important;
+            }
+
+            .vkuiPlaceholder__title,
+            .vkuiTitle__level2 {
+                font-size: 18px !important;
+            }
+
+            input.vkuiInput__el {
+                font-size: 15px !important;
+            }
+
+            .vkuiButton__host {
+                font-size: 15px !important;
+            }
+        }
+
+        /* ---------- Отключаем зум при фокусе на iOS ---------- */
+        @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+    </style>
 </head>
 <body onresize="window.onBodyResize &amp;&amp; onBodyResize();" class="index_page anonym anonym_nav " data-nosnippet="true" scheme="vkcom_light" data-useragent="chrome">
     <div id="utils"></div>
