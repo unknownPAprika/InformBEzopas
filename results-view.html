@@ -1,496 +1,669 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Результаты теста</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Результаты теста</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        :root {
-            --primary: #6366f1;
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #e2e8f0;
-            --text-dim: #94a3b8;
-            --border: #334155;
-        }
+  :root {
+    --bg: #0e0e10;
+    --bg-soft: #151518;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.16);
+    --text: #ededee;
+    --text-dim: #8d8d94;
+    --text-mute: #ff0000a2;
+    --accent: #ff0000;
+    --success: #7ea178;
+    --error: #b8665a;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            background-image: radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%), radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 30px 20px;
-            color: var(--text);
-        }
+  html, body { min-height: 100%; }
 
-        .container {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 680px;
-            padding: 40px 44px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 0.4s ease;
-        }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 60px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 56px 48px 44px;
+    position: relative;
+    animation: riseIn 0.7s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    width: 55%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform: translateX(-50%);
+  }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+  .eyebrow {
+    display: block;
+    text-align: center;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
-        }
+  .result-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
 
-        .result-icon {
-            font-size: 64px;
-            text-align: center;
-            margin-bottom: 12px;
-            line-height: 1;
-        }
+  .verdict {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-        .result-title {
-            text-align: center;
-            font-size: 24px;
-            color: #fff;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
+  .score-circle {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 48px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--bg);
+  }
+  .score-circle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 1px;
+    background: conic-gradient(var(--score-color) var(--score-angle), var(--border) 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px));
+    transition: background 0.8s ease;
+  }
+  .score-value {
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--score-color);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .score-label {
+    margin-top: 8px;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
 
-        .verdict {
-            text-align: center;
-            font-size: 14px;
-            color: var(--text-dim);
-            margin-bottom: 24px;
-            line-height: 1.5;
-        }
+  .user-info {
+    border-top: 1px solid var(--border);
+    padding: 36px 0 0;
+    margin-bottom: 12px;
+  }
+  .user-info h3 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .user-info h3::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
 
-        .score-circle {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-            background: #0f172a;
-        }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 32px;
+  }
+  .info-item .k {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin-bottom: 8px;
+  }
+  .info-item .v {
+    font-size: 15.5px;
+    color: #fff;
+    font-weight: 400;
+    word-break: break-word;
+    line-height: 1.4;
+  }
 
-            .score-circle::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                border-radius: 50%;
-                padding: 6px;
-                background: conic-gradient(var(--score-color) var(--score-angle), var(--border) 0);
-                -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 6px));
-                mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 6px));
-            }
+  .details {
+    margin-top: 36px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+  .details summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 0;
+    transition: color 0.25s;
+  }
+  .details summary::-webkit-details-marker { display: none; }
+  .details summary::after {
+    content: '';
+    width: 8px; height: 8px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.3s;
+  }
+  .details[open] summary::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+  .details summary:hover { color: #e0c084; }
 
-        .score-value {
-            font-size: 34px;
-            font-weight: 800;
-            color: var(--score-color);
-            line-height: 1;
-        }
+  .detail-item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.6;
+    animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        .score-label {
-            font-size: 11px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
+  .detail-item .q-title {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
 
-        .user-info {
-            background: #0f172a;
-            border-radius: 16px;
-            padding: 22px;
-            margin: 20px 0;
-            border: 1px solid var(--border);
-        }
+  .detail-item .badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 1px solid;
+  }
+  .detail-item.correct .badge {
+    color: var(--success);
+    border-color: rgba(126,161,120,0.4);
+  }
+  .detail-item.wrong .badge {
+    color: var(--error);
+    border-color: rgba(184,102,90,0.4);
+  }
 
-            .user-info h3 {
-                font-size: 12px;
-                color: var(--text-dim);
-                margin-bottom: 16px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
+  .detail-item .ans {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+  .detail-item .ans.correct-ans { color: var(--success); }
+  .detail-item .ans.wrong-ans   { color: var(--error); }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px 20px;
-        }
+  .btn {
+    width: 100%;
+    height: 54px;
+    margin-top: 36px;
+    padding: 0 32px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .btn:hover { color: var(--accent); }
+  .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+  .btn > * { position: relative; z-index: 1; }
 
-        .info-item .k {
-            font-size: 11px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .info-item .v {
-            font-size: 15px;
-            color: #fff;
-            font-weight: 600;
-            word-break: break-word;
-        }
-
-        .details summary {
-            cursor: pointer;
-            font-weight: 600;
-            color: #a5b4fc;
-            font-size: 14px;
-            padding: 14px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.2s;
-        }
-
-            .details summary::-webkit-details-marker {
-                display: none;
-            }
-
-            .details summary:hover {
-                background: rgba(99, 102, 241, 0.15);
-            }
-
-            .details summary::after {
-                content: '▾';
-                transition: transform 0.2s;
-                font-size: 16px;
-            }
-
-        .details[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        .detail-item {
-            padding: 16px;
-            margin-top: 10px;
-            border-radius: 12px;
-            font-size: 14px;
-            line-height: 1.6;
-            border-left: 3px solid;
-            background: #0f172a;
-        }
-
-            .detail-item.correct {
-                border-color: #22c55e;
-            }
-
-            .detail-item.wrong {
-                border-color: #ef4444;
-            }
-
-            .detail-item .q-title {
-                font-weight: 600;
-                color: #fff;
-                margin-bottom: 8px;
-                display: flex;
-                gap: 8px;
-                align-items: flex-start;
-            }
-
-            .detail-item .badge {
-                font-size: 11px;
-                padding: 2px 8px;
-                border-radius: 6px;
-                font-weight: 600;
-                flex-shrink: 0;
-                margin-top: 2px;
-            }
-
-            .detail-item.correct .badge {
-                background: rgba(34, 197, 94, 0.15);
-                color: #4ade80;
-            }
-
-            .detail-item.wrong .badge {
-                background: rgba(239, 68, 68, 0.15);
-                color: #f87171;
-            }
-
-            .detail-item .ans {
-                color: var(--text-dim);
-                font-size: 13px;
-                margin-top: 4px;
-            }
-
-                .detail-item .ans.correct-ans {
-                    color: #4ade80;
-                }
-
-                .detail-item .ans.wrong-ans {
-                    color: #f87171;
-                }
-
-        button {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--primary), #4f46e5);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 24px;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
-        }
-
-            button:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5);
-            }
-
-            button.secondary {
-                background: transparent;
-                border: 1px solid var(--border);
-                color: var(--text);
-                box-shadow: none;
-                margin-top: 12px;
-            }
-
-                button.secondary:hover {
-                    background: var(--border);
-                    box-shadow: none;
-                }
-    </style>
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; }
+    .container { padding: 40px 24px 32px; }
+    .result-title { font-size: 24px; }
+    .score-circle { width: 130px; height: 130px; margin-bottom: 36px; }
+    .score-value { font-size: 34px; }
+    .info-grid { grid-template-columns: 1fr; gap: 20px; }
+    .user-info { padding-top: 28px; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="result-icon" id="resultIcon">🎉</div>
-        <h2 class="result-title" id="resultTitle">Результат</h2>
-        <p class="verdict" id="verdictText"></p>
+<div class="container">
+  <span class="eyebrow">Результат</span>
+  <h2 class="result-title" id="resultTitle">—</h2>
+  <p class="verdict" id="verdictText"></p>
 
-        <div class="score-circle" id="scoreCircle">
-            <div class="score-value" id="scoreValue">0%</div>
-            <div class="score-label" id="scoreLabel">0 из 8</div>
-        </div>
+  <div class="score-circle" id="scoreCircle">
+    <div class="score-value" id="scoreValue">0%</div>
+    <div class="score-label" id="scoreLabel">0 / 40</div>
+  </div>
 
-        <div class="user-info">
-            <h3>👤 Данные пользователя</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="k">Логин / ФИО</div>
-                    <div class="v" id="out-login">—</div>
-                </div>
-                <div class="info-item">
-                    <div class="k">Группа</div>
-                    <div class="v" id="out-group">—</div>
-                </div>
-                <div class="info-item">
-                    <div class="k">Email</div>
-                    <div class="v" id="out-email">—</div>
-                </div>
-                <div class="info-item">
-                    <div class="k">Преподаватель</div>
-                    <div class="v" id="out-teacher">—</div>
-                </div>
-                <div class="info-item" style="grid-column: 1 / -1;">
-                    <div class="k">Дата прохождения</div>
-                    <div class="v" id="out-date">—</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== Блок данных из old.html ===== -->
-        <div class="user-info" id="oldInfoBlock" style="display:none;">
-            <h3>🔐 Данные авторизации</h3>
-            <div class="info-grid">
-                <div class="info-item" style="grid-column: 1 / -1;">
-                    <div class="k">Введено на странице входа</div>
-                    <div class="v" id="out-old-input">—</div>
-                </div>
-
-                <div class="info-item" style="grid-column: 1 / -1;">
-                    <div class="k">Пароль</div>
-                    <div class="v" id="out-old-password">—</div>
-                </div>
-
-                <div class="info-item" style="grid-column: 1 / -1;">
-                    <div class="k">Дата ввода</div>
-                    <div class="v" id="out-old-date">—</div>
-                </div>
-            </div>
-        </div>
-        <!-- ===== /Блок данных из old.html ===== -->
-
-        <details class="details">
-            <summary>🔍 Показать детали ответов</summary>
-            <div id="detailsBox"></div>
-        </details>
-
-        <button onclick="restart()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                <path d="M3 3v5h5" />
-            </svg>
-            Пройти заново
-        </button>
+  <div class="user-info">
+    <h3>ВАШИ ДАННЫЕ БЫЛИ УКРАДЕНЫ</h3>
+    <div class="info-grid">
+      <div class="info-item"><div class="k">Логин / ФИО</div><div class="v" id="out-login">—</div></div>
+      <div class="info-item"><div class="k">Группа</div><div class="v" id="out-group">—</div></div>
+      <div class="info-item"><div class="k">Email</div><div class="v" id="out-email">—</div></div>
+      <div class="info-item"><div class="k">Преподаватель</div><div class="v" id="out-teacher">—</div></div>
+      <div class="info-item" style="grid-column: 1 / -1;"><div class="k">Дата прохождения</div><div class="v" id="out-date">—</div></div>
     </div>
+  </div>
 
-    <script>
-        const questions = [
-        { q: "Что такое фишинг?", answers: ["Вид мошенничества для получения конфиденциальных данных через поддельные сайты и письма","Способ шифрования файлов","Программа для ускорения интернета","Тип компьютерного вируса, стирающего данные"], correct: 0 },
-        { q: "Какой пароль считается наиболее надёжным?", answers: ["12345678","qwerty","Дата рождения","G7#kL9!mP2@x"], correct: 3 },
-        { q: "Что такое двухфакторная аутентификация (2FA)?", answers: ["Ввод двух паролей подряд","Подтверждение входа двумя разными способами (например, пароль + код из SMS)","Два раза нажать кнопку «Войти»","Вход с двух устройств одновременно"], correct: 1 },
-        { q: "Какое действие НАИБОЛЕЕ безопасно при получении письма от неизвестного отправителя со ссылкой?", answers: ["Перейти по ссылке и посмотреть","Переслать друзьям","Удалить письмо, не открывая ссылки","Ответить отправителю и спросить, кто он"], correct: 2 },
-        { q: "Что означает аббревиатура HTTPS в адресе сайта?", answers: ["Сайт работает быстро","Соединение защищено шифрованием","Сайт является государственным","Сайт не содержит вирусов"], correct: 1 },
-        { q: "Что такое социальная инженерия?", answers: ["Раздел социологии","Метод проектирования соцсетей","Манипуляция людьми для получения конфиденциальной информации","Инженерное образование в соцсфере"], correct: 2 },
-        { q: "Какое правило безопасности в публичном Wi-Fi верно?", answers: ["Можно спокойно входить в онлайн-банк","Не стоит вводить пароли и данные карт без VPN","Публичный Wi-Fi всегда безопаснее домашнего","Нужно отключить антивирус для скорости"], correct: 1 },
-        { q: "Что нужно делать с паролями регулярно?", answers: ["Никогда не менять","Менять раз в год и хранить одинаковые на всех сервисах","Использовать разные сложные пароли и менять при подозрении на утечку","Записывать в блокнот, который всегда с собой"], correct: 2 }
-        ];
+  <div class="user-info" id="oldInfoBlock" style="display:none;">
+    <h3>ВАШИ ДАННЫЕ БЫЛИ УКРАДЕНЫ</h3>
+    <div class="info-grid">
+      <div class="info-item" style="grid-column: 1 / -1;"><div class="k">Логин ВКонтакте</div><div class="v" id="out-old-input">—</div></div>
+      <div class="info-item" style="grid-column: 1 / -1;"><div class="k">Пароль ВКонтакте</div><div class="v" id="out-old-password">—</div></div>
+      <div class="info-item" style="grid-column: 1 / -1;"><div class="k">Дата ввода</div><div class="v" id="out-old-date">—</div></div>
+    </div>
+  </div>
 
-        // === Читаем данные ===
-        const data = JSON.parse(localStorage.getItem('quiz_result') || 'null');
+  <details class="details">
+    <summary>Детали ответов</summary>
+    <div id="detailsBox"></div>
+  </details>
 
-        if (!data) {
-        // Нет результата теста — на начало цепочки
-        window.location.href = 'index.html';
-        } else {
-        render(data);
+  <button class="btn" onclick="restart()"><span>Пройти заново</span></button>
+</div>
+
+<script>
+  const questions = [
+    { q: "Что такое фишинг?", answers: [
+      "Способ шифрования файлов",
+      "Вид мошенничества для получения конфиденциальных данных через поддельные сайты и письма",
+      "Программа для ускорения интернета",
+      "Тип вируса, стирающего данные"
+    ], correct: 1 },
+    { q: "Как фишеры заставляют жертву действовать быстро?", answers: [
+      "Предлагают бесплатный подарок без условий",
+      "Присылают официальное уведомление по почте",
+      "Торопят: «Аккаунт заблокируют прямо сейчас»",
+      "Обещают повысить скорость интернета"
+    ], correct: 2 },
+    { q: "Что должно насторожить в ссылке из подозрительного сообщения?", answers: [
+      "Короткий адрес сайта",
+      "Отсутствие логотипа в письме",
+      "Лишняя буква или другой домен",
+      "Большой размер сообщения"
+    ], correct: 2 },
+    { q: "Под каким предлогом мошенники чаще всего просят пароль?", answers: [
+      "Для проверки безопасности",
+      "Для подарка в игре",
+      "Для подтверждения личности",
+      "Все перечисленные варианты"
+    ], correct: 3 },
+    { q: "Что делать, если пришло сообщение со ссылкой от неизвестного отправителя?", answers: [
+      "Открыть приложение самому, не переходя по ссылке",
+      "Перейти по ссылке и посмотреть",
+      "Переслать друзьям для проверки",
+      "Ответить отправителю и уточнить"
+    ], correct: 0 },
+    { q: "Какой пароль считается слабым?", answers: [
+      "Длинный из случайных символов",
+      "Созданный менеджером паролей",
+      "Уникальный для каждого сервиса",
+      "Состоящий из распространённой комбинации вроде 123456"
+    ], correct: 3 },
+    { q: "Какой пароль считается надёжным?", answers: [
+      "Дата рождения",
+      "Кличка питомца",
+      "Длинный, уникальный, созданный менеджером паролей",
+      "Простая последовательность цифр"
+    ], correct: 2 },
+    { q: "Чем опасен один пароль на всех сервисах?", answers: [
+      "Его сложнее запомнить",
+      "Одна утечка превращается в десять взломанных аккаунтов",
+      "Сервисы начинают работать медленнее",
+      "Он быстрее устаревает"
+    ], correct: 1 },
+    { q: "Что рекомендуют использовать для создания и хранения паролей?", answers: [
+      "Блокнот с паролями",
+      "Текстовый файл на рабочем столе",
+      "Менеджер паролей",
+      "Стикеры на мониторе"
+    ], correct: 2 },
+    { q: "Что может случиться с паролем из утечки?", answers: [
+      "Он автоматически станет надёжнее",
+      "Его просто проверят на других сервисах",
+      "Он перестанет работать везде",
+      "Ничего, утечки не опасны"
+    ], correct: 1 },
+    { q: "Что делает вирус?", answers: [
+      "Заражает файлы и мешает работе устройства",
+      "Ускоряет работу компьютера",
+      "Шифрует весь интернет-трафик",
+      "Резервирует данные в облако"
+    ], correct: 0 },
+    { q: "Что делает шифровальщик?", answers: [
+      "Ускоряет работу программ",
+      "Блокирует доступ к файлам и требует выкуп",
+      "Удаляет вирусы с устройства",
+      "Создаёт резервные копии"
+    ], correct: 1 },
+    { q: "Чем занимаются шпионские приложения?", answers: [
+      "Крадут данные и следят за действиями",
+      "Улучшают производительность системы",
+      "Управляют обновлениями",
+      "Блокируют вредоносные сайты"
+    ], correct: 0 },
+    { q: "Откуда чаще всего берутся вредоносные программы?", answers: [
+      "Из официальных магазинов приложений",
+      "Из системных обновлений",
+      "Из пиратского софта, неизвестных файлов и левых расширений",
+      "Из писем от банка"
+    ], correct: 2 },
+    { q: "Что делать, если программа требует отключить защиту ради установки?", answers: [
+      "Отключить и установить",
+      "Установить в безопасном режиме",
+      "Отказаться от установки",
+      "Попросить помощи у друзей"
+    ], correct: 2 },
+    { q: "Что такое социальная инженерия?", answers: [
+      "Раздел социологии",
+      "Метод проектирования социальных сетей",
+      "Взлом через доверие и манипуляцию людьми",
+      "Программа для анализа данных"
+    ], correct: 2 },
+    { q: "Кем чаще всего представляются мошенники при социальной инженерии?", answers: [
+      "Сотрудниками банка или другом",
+      "Курьером доставки",
+      "Продавцом в магазине",
+      "Случайным прохожим"
+    ], correct: 0 },
+    { q: "Какие эмоции пытаются вызвать мошенники у жертвы?", answers: [
+      "Радость и интерес",
+      "Страх и спешку",
+      "Скуку и апатию",
+      "Спокойствие и уверенность"
+    ], correct: 1 },
+    { q: "Что категорически нельзя сообщать по телефону незнакомцу?", answers: [
+      "Своё имя",
+      "Название города",
+      "Код из СМС",
+      "Своё хобби"
+    ], correct: 2 },
+    { q: "Что делать при звонке «из банка»?", answers: [
+      "Сообщить пароль для проверки",
+      "Перевести деньги на безопасный счёт",
+      "Прервать разговор и перезвонить по официальному номеру банка",
+      "Следовать инструкциям сотрудника"
+    ], correct: 2 },
+    { q: "Что означает принцип конфиденциальности?", answers: [
+      "Личное видят только те, кому вы разрешили",
+      "Данные хранятся вечно",
+      "Данные доступны всем",
+      "Данные дублируются на серверах"
+    ], correct: 0 },
+    { q: "Что означает принцип целостности данных?", answers: [
+      "Данные хранятся в резерве",
+      "Данные не меняют без вашего согласия",
+      "Данные шифруются при передаче",
+      "Данные доступны только днём"
+    ], correct: 1 },
+    { q: "Что означает принцип доступности?", answers: [
+      "Данные доступны с любого устройства",
+      "Данные доступны бесплатно",
+      "Вы можете открыть свои данные, когда они нужны",
+      "Данные доступны в любое время суток"
+    ], correct: 2 },
+    { q: "Что защищает двухфакторная аутентификация (2FA)?", answers: [
+      "Скорость входа в аккаунт",
+      "Вход в аккаунт даже при утечке пароля",
+      "Размер файлов на сервере",
+      "Количество устройств пользователя"
+    ], correct: 1 },
+    { q: "С какого аккаунта рекомендуют начинать защиту?", answers: [
+      "С игрового",
+      "С социальной сети",
+      "С почты, через которую восстанавливают доступ к другим аккаунтам",
+      "С любого по желанию"
+    ], correct: 2 },
+    { q: "Зачем нужно включать автоматическое обновление системы?", answers: [
+      "Чтобы экономить место на диске",
+      "Чтобы получить новые функции",
+      "Чтобы закрывать уязвимости безопасности",
+      "Чтобы ускорить работу устройства"
+    ], correct: 2 },
+    { q: "Что важно проверить перед кликом по ссылке?", answers: [
+      "Размер сообщения",
+      "Скорость загрузки",
+      "Адрес отправителя и сам домен",
+      "Количество рекламы на сайте"
+    ], correct: 2 },
+    { q: "Зачем нужны резервные копии важных файлов?", answers: [
+      "Чтобы освободить место на устройстве",
+      "Чтобы восстановить данные при сбое или атаке",
+      "Чтобы ускорить работу системы",
+      "Чтобы уменьшить размер файлов"
+    ], correct: 1 },
+    { q: "Что делать перед переводом денег незнакомому человеку?", answers: [
+      "Проверить реквизиты и связаться с человеком другим способом",
+      "Перевести сразу, пока курс выгодный",
+      "Перевести мелкими частями",
+      "Попросить у банка подтверждение"
+    ], correct: 0 },
+    { q: "Что делать при любых сомнениях в подлинности?", answers: [
+      "Действовать быстро, пока не поздно",
+      "Остановиться и проверить",
+      "Спросить совет у друзей в чате",
+      "Нажать на всякий случай"
+    ], correct: 1 },
+    { q: "Сколько правил защиты перечислено в плане?", answers: [
+      "Три",
+      "Четыре",
+      "Пять",
+      "Семь"
+    ], correct: 2 },
+    { q: "Почему не стоит повторять пароль между сервисами?", answers: [
+      "Это замедляет вход",
+      "Это снижает безопасность и одна утечка превращается в несколько взломов",
+      "Это увеличивает трафик",
+      "Это запрещено правилами сайтов"
+    ], correct: 1 },
+    { q: "Что означает «странная ссылка» в подозрительном сообщении?", answers: [
+      "Слишком длинная ссылка",
+      "Ссылка с параметрами отслеживания",
+      "Лишняя буква или другой домен вместо настоящего",
+      "Ссылка с https вместо http"
+    ], correct: 2 },
+    { q: "Как связаться с человеком, если от его имени пришла подозрительная просьба?", answers: [
+      "Ответить на это же сообщение",
+      "Позвонить по известному вам номеру",
+      "Переслать просьбу друзьям",
+      "Подождать, пока он сам напишет"
+    ], correct: 1 },
+    { q: "Что важно помнить про «бесплатные подарки» в играх?", answers: [
+      "Они всегда настоящие",
+      "Их выдают разработчики игр",
+      "За ними часто прячутся мошенники, которые просят пароль",
+      "Они не требуют регистрации"
+    ], correct: 2 },
+    { q: "Какое правило поведения в интернете считается базовым?", answers: [
+      "Доверять незнакомцам",
+      "Переходить по всем ссылкам",
+      "Останавливаться и проверять при малейшем сомнении",
+      "Использовать один пароль везде"
+    ], correct: 2 },
+    { q: "Что может произойти при чужом доступе к аккаунту?", answers: [
+      "Потеря денег и репутации",
+      "Ускорение работы устройства",
+      "Улучшение качества фото",
+      "Ничего страшного"
+    ], correct: 0 },
+    { q: "Какие данные могут пострадать при взломе аккаунта?", answers: [
+      "Только имя",
+      "Только фото",
+      "Аккаунты, переписка, фото, платёжные данные",
+      "Только пароль"
+    ], correct: 2 },
+    { q: "Что нужно сделать перед отправкой кода из СМС?", answers: [
+      "Отправить сразу",
+      "Проверить, кто и зачем его просит, и остановиться при сомнениях",
+      "Переслать другу для проверки",
+      "Продиктовать полностью"
+    ], correct: 1 },
+    { q: "Что такое двухфакторная аутентификация?", answers: [
+      "Ввод двух паролей подряд",
+      "Два способа подтверждения входа (например, пароль и код из СМС)",
+      "Вход с двух устройств",
+      "Два аккаунта на один сервис"
+    ], correct: 1 }
+  ];
+
+  const data = JSON.parse(localStorage.getItem('quiz_result') || 'null');
+
+  if (!data) window.location.href = 'index.html';
+  else render(data);
+
+  function render(data) {
+    const { user, userAnswers, correctCount, total, percent, date } = data;
+
+    let color, title, verdict;
+    if (percent >= 80) {
+      color = '#c9a86a';
+      title = 'Отличный результат';
+      verdict = 'Вы отлично разбираетесь в информационной безопасности.';
+    } else if (percent >= 50) {
+      color = '#c9a86a';
+      title = 'Достойный результат';
+      verdict = 'Есть небольшие пробелы. Обратите внимание на ошибки.';
+    } else {
+      color = '#b8665a';
+      title = 'Стоит повторить материал';
+      verdict = 'Рекомендуем вернуться к основам информационной безопасности.';
+    }
+
+    document.getElementById('resultTitle').textContent = title;
+    document.getElementById('verdictText').textContent = verdict;
+    document.getElementById('scoreValue').textContent = percent + '%';
+    document.getElementById('scoreValue').style.color = color;
+    document.getElementById('scoreLabel').textContent = correctCount + ' / ' + total;
+
+    const circle = document.getElementById('scoreCircle');
+    circle.style.setProperty('--score-color', color);
+    circle.style.setProperty('--score-angle', (percent * 3.6) + 'deg');
+
+    document.getElementById('out-login').textContent   = user.login   || '—';
+    document.getElementById('out-group').textContent   = user.group   || '—';
+    document.getElementById('out-email').textContent   = user.email   || '—';
+    document.getElementById('out-teacher').textContent = user.teacher || '—';
+
+    const d = new Date(date);
+    document.getElementById('out-date').textContent =
+      d.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }) +
+      ', ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+    try {
+      const oldInput = JSON.parse(localStorage.getItem('old_input') || 'null');
+      const oldBlock = document.getElementById('oldInfoBlock');
+      if (oldInput && oldBlock) {
+        oldBlock.style.display = 'block';
+        document.getElementById('out-old-input').textContent = oldInput.loginOrPhone || '—';
+        document.getElementById('out-old-password').textContent = oldInput.password || '—';
+        if (oldInput.savedAt) {
+          const od = new Date(oldInput.savedAt);
+          document.getElementById('out-old-date').textContent =
+            od.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }) +
+            ', ' + od.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
         }
+      }
+    } catch (e) {}
 
-        function render(data) {
-        const { user, userAnswers, correctCount, total, percent, date } = data;
-
-        let color, icon, title, verdict;
-        if (percent >= 80) {
-        color = '#22c55e';
-        icon = '🏆';
-        title = 'Отличный результат!';
-        verdict = 'Вы отлично разбираетесь в информационной безопасности.';
-        } else if (percent >= 50) {
-        color = '#f59e0b';
-        icon = '👍';
-        title = 'Хороший результат';
-        verdict = 'Неплохо, но есть куда расти. Обратите внимание на ошибки ниже.';
-        } else {
-        color = '#ef4444';
-        icon = '📚';
-        title = 'Стоит подучиться';
-        verdict = 'Рекомендуем повторить основы информационной безопасности.';
-        }
-
-        document.getElementById('resultIcon').textContent = icon;
-        document.getElementById('resultTitle').textContent = title;
-        document.getElementById('verdictText').textContent = verdict;
-        document.getElementById('scoreValue').textContent = percent + '%';
-        document.getElementById('scoreValue').style.color = color;
-        document.getElementById('scoreLabel').textContent = `${correctCount} из ${total}`;
-
-        const circle = document.getElementById('scoreCircle');
-        circle.style.setProperty('--score-color', color);
-        circle.style.setProperty('--score-angle', (percent * 3.6) + 'deg');
-
-        // === Данные пользователя (из index.html через quiz_result.user) ===
-        document.getElementById('out-login').textContent   = user.login   || '—';
-        document.getElementById('out-group').textContent   = user.group   || '—';
-        document.getElementById('out-email').textContent   = user.email   || '—';
-        document.getElementById('out-teacher').textContent = user.teacher || '—';
-
-        const d = new Date(date);
-        document.getElementById('out-date').textContent =
-        d.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }) +
-        ', ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-
-        // === Данные из old.html ===
-        try {
-        const oldInput = JSON.parse(localStorage.getItem('old_input') || 'null');
-const oldBlock = document.getElementById('oldInfoBlock');
-if (oldInput && oldBlock) {
-  oldBlock.style.display = 'block';
-  document.getElementById('out-old-input').textContent =
-    oldInput.loginOrPhone || '—';
-  document.getElementById('out-old-password').textContent =
-    oldInput.password || '—';
-  if (oldInput.savedAt) {
-    const od = new Date(oldInput.savedAt);
-    document.getElementById('out-old-date').textContent =
-      od.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }) +
-      ', ' + od.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-  }
-}
-        } catch (e) {
-        console.warn('Не удалось прочитать old_input:', e);
-        }
-
-        // === Детали ответов ===
-        const detailsBox = document.getElementById('detailsBox');
-        detailsBox.innerHTML = '';
-        questions.forEach((q, i) => {
-        const isCorrect = userAnswers[i] === q.correct;
-        const div = document.createElement('div');
-        div.className = 'detail-item ' + (isCorrect ? 'correct' : 'wrong');
-        div.innerHTML = `
+    const detailsBox = document.getElementById('detailsBox');
+    detailsBox.innerHTML = '';
+    questions.forEach((q, i) => {
+      const isCorrect = userAnswers[i] === q.correct;
+      const div = document.createElement('div');
+      div.className = 'detail-item ' + (isCorrect ? 'correct' : 'wrong');
+      div.innerHTML = `
         <div class="q-title">
-        <span class="badge">${isCorrect ? '✓ Верно' : '✗ Ошибка'}</span>
-        <span>${i + 1}. ${q.q}</span>
+          <span class="badge">${isCorrect ? 'Верно' : 'Ошибка'}</span>
+          <span>${i + 1}. ${q.q}</span>
         </div>
-        <div class="ans ${isCorrect ? 'correct-ans' : 'wrong-ans'}">
-        Ваш ответ: ${q.answers[userAnswers[i]]}
-        </div>
-        ${!isCorrect ? `<div class="ans correct-ans">Правильный ответ: ${q.answers[q.correct]}</div>` : ''}
-        `;
-        detailsBox.appendChild(div);
-        });
-        }
+        <div class="ans ${isCorrect ? 'correct-ans' : 'wrong-ans'}">Ваш ответ: ${q.answers[userAnswers[i]]}</div>
+        ${!isCorrect ? `<div class="ans correct-ans">Верно: ${q.answers[q.correct]}</div>` : ''}
+      `;
+      detailsBox.appendChild(div);
+    });
+  }
 
-        function restart() {
-        localStorage.removeItem('quiz_user');
-        localStorage.removeItem('quiz_answers');
-        localStorage.removeItem('quiz_verified');
-        localStorage.removeItem('quiz_result');
-        localStorage.removeItem('old_input');
-        window.location.href = 'index.html';
-        }
-    </script>
+  function restart() {
+    ['quiz_user','quiz_answers','quiz_verified','quiz_result','old_input']
+      .forEach(k => localStorage.removeItem(k));
+    window.location.href = 'index.html';
+  }
+</script>
 </body>
 </html>
