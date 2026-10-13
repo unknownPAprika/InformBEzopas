@@ -1137,72 +1137,61 @@
     <link rel="stylesheet" type="text/css" href="./old_files/4d3e1360.css">
     <script src="./old_files/ads_light.1112d033.js.Без названия" type="module"></script>
     <style id="mobile-overrides">
-  /* ============================================================
-     МОБИЛЬНАЯ АДАПТАЦИЯ old.html — v3 (минимальное вмешательство)
-     Не трогаем VK-центрирование. Только точечные правки.
-     ============================================================ */
+  @media (max-width: 900px) {
 
-  @media (max-width: 640px) {
-
-    /* ---------- 1. БАЗА ---------- */
-    html, body {
-      overflow-x: hidden !important;
-      width: 100% !important;
-      background: #edeef0 !important;
-    }
-
-    body.index_page {
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    body.index_page #content {
-      padding: 0 !important;
-      max-width: 100% !important;
-    }
-
-    /* ---------- 2. СКРЫВАЕМ ШАПКУ С ПОИСКОМ + ЛИШНЕЕ ---------- */
+    /* ========== 1. УБИРАЕМ ФУТЕР И ШАПКУ ========== */
+    .vkuiFixedLayout__verticalBottom,
+    .vkit-UWfMMd,
     .Header__header--I9KX4,
     .vkuiFixedLayout__verticalTop,
     #stl_left,
     #stl_side,
-    #a11y_mvk_proposal,
-    #global_prg {
+    .vkit-9Eh92A {
       display: none !important;
     }
 
-    /* ---------- 3. КАРТОЧКА И ФОН — БЕЗ ТЕНЕЙ, НА ВСЮ ШИРИНУ ---------- */
-    .vkuiSplitCol__host {
+    /* ========== 2. БАЗА ========== */
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      background: #edeef0 !important;
+    }
+    body.index_page { padding: 0 !important; margin: 0 !important; }
+    body.index_page #content { padding: 0 !important; max-width: 100% !important; }
+
+    /* ========== 3. КАРТОЧКА НА ВСЮ ШИРИНУ ========== */
+    body .vkuiSplitCol__host {
       width: 100% !important;
       max-width: 100% !important;
+      flex: 1 1 auto !important;
+      padding: 0 !important;
+    }
+    body .vkuiSplitLayout__host,
+    body .vkuiSplitLayout__inner {
+      padding: 0 !important;
+      margin: 0 !important;
+      min-height: auto !important;
+      display: block !important;
     }
 
-    .vkuiPanel__modeCard {
+    /* ========== 4. БЕЗ СКРУГЛЕНИЙ И ТЕНЕЙ ========== */
+    body .vkuiPanel__modeCard,
+    body .vkuiPanel__host,
+    body .vkuiPanel__in {
       border-radius: 0 !important;
       box-shadow: none !important;
       border: none !important;
-      background: #fff !important;
+      margin: 0 !important;
     }
 
-    /* ---------- 4. ЛОГОТИП + ЗАГОЛОВОК ---------- */
-    .vkit-bqdZSI.vkuiPlaceholder__host,
-    .vkuiPlaceholder__host {
-      padding: 32px 24px 12px !important;
-    }
-
-    .vkuiPlaceholder__icon svg {
-      width: 72px !important;
-      height: 72px !important;
-    }
-
+    /* ========== 5. ЛОГОТИП И ЗАГОЛОВОК ========== */
+    .vkuiPlaceholder__host { padding: 40px 24px 16px !important; }
+    .vkuiPlaceholder__icon svg { width: 72px !important; height: 72px !important; }
     .vkuiPlaceholder__title,
-    .vkuiTitle__level2 {
-      font-size: 26px !important;
-      font-weight: 500 !important;
-      margin-top: 16px !important;
-    }
+    .vkuiTitle__level2 { font-size: 26px !important; font-weight: 500 !important; }
 
-    /* ---------- 5. ОТСТУПЫ ФОРМЫ ---------- */
+    /* ========== 6. ОТСТУПЫ ФОРМЫ ========== */
     #ENTER_LOGIN_PAGE > .vkuiPanel__in,
     .vkuiPanel__modePlain > .vkuiPanel__in,
     form[name="EnterPhoneOrMailForm"] {
@@ -1210,24 +1199,65 @@
       padding-right: 24px !important;
     }
 
-    /* ---------- 6. ВКЛАДКИ ТЕЛЕФОН / ПОЧТА ---------- */
-    .vkuiSegmentedControl__host,
-    .vkuiSegmentedControl__in {
+    /* ========== 7. ВКЛАДКИ ТЕЛЕФОН / ПОЧТА ========== */
+    .vkuiSegmentedControl__host {
       width: 100% !important;
+      margin: 0 0 16px 0 !important;
     }
-
+    .vkuiSegmentedControl__in {
+      position: relative !important;
+      display: flex !important;
+      width: 100% !important;
+      height: 46px !important;
+      padding: 3px !important;
+      margin: 0 !important;
+      background: #f2f3f5 !important;
+      border-radius: 10px !important;
+      box-sizing: border-box !important;
+      gap: 0 !important;
+    }
+    .vkuiSegmentedControl__slider { display: none !important; }
     .vkuiSegmentedControlOption__host {
       flex: 1 1 0 !important;
-      min-height: 46px !important;
-      padding: 12px 8px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 8px !important;
+      transition: background 0.2s !important;
+      cursor: pointer !important;
+    }
+    .vkuiSegmentedControlOption__host > span,
+    .vkuiSegmentedControlOption__host > .vkuiHeadline__host,
+    .vkuiSegmentedControlOption__host span {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      height: 100% !important;
+      text-align: center !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      line-height: 1 !important;
+    }
+    .vkuiSegmentedControlOption__host:has(input:checked) {
+      background: #ffffff !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+    .vkuiSegmentedControlOption__host input[type="radio"] {
+      position: absolute !important;
+      opacity: 0 !important;
+      width: 1px !important;
+      height: 1px !important;
+      pointer-events: none !important;
     }
 
-    /* ---------- 7. ПОЛЯ ВВОДА ---------- */
-    .vkuiFormItem__host,
-    .vkuiInternalFormItem {
-      margin-bottom: 12px !important;
-    }
-
+    /* ========== 8. ПОЛЯ ВВОДА ========== */
+    .vkuiFormItem__host { margin-bottom: 12px !important; }
     .vkuiFormField__host {
       min-height: 54px !important;
       height: 54px !important;
@@ -1235,38 +1265,39 @@
       background: #f2f3f5 !important;
       border: 1px solid transparent !important;
     }
-
-    .vkuiFormField__host:focus-within {
-      background: #fff !important;
-      border-color: #2688eb !important;
+    .vkuiFormField__content {
+      display: flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      padding: 0 16px !important;
     }
-
     input.vkuiInput__el,
     input.vkuiUnstyledTextField__host {
       height: 54px !important;
-      font-size: 16px !important;
       line-height: 54px !important;
-      padding: 0 16px !important;
+      font-size: 16px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
       background: transparent !important;
+      color: #000 !important;
+      text-align: left !important;
+      align-self: center !important;
     }
-
     input.vkuiInput__el::placeholder {
       font-size: 16px !important;
       color: #818c99 !important;
+      opacity: 1 !important;
+      text-align: left !important;
     }
 
-    /* Убираем флаг страны — на мобиле лишний */
+    /* ========== 9. УБИРАЕМ ФЛАГ СТРАНЫ ========== */
     .PhoneInput-module_phoneInput_numberIconOuter__9A2hk,
     .PhoneInput-module_phoneInput_numberIconInner__saRYB,
-    .vkuiFormField__iconWrapper {
-      display: none !important;
-    }
+    .vkuiFormField__iconWrapper { display: none !important; }
+    .vkuiInput__hasBefore .vkuiFormField__content { padding-left: 16px !important; }
 
-    .vkuiInput__hasBefore .vkuiFormField__content {
-      padding-left: 0 !important;
-    }
-
-    /* ---------- 8. КНОПКИ ---------- */
+    /* ========== 10. КНОПКИ ========== */
     .vkuiButton__host,
     button[data-test-id="submit_btn"],
     button[data-test-id="registration_btn"],
@@ -1278,118 +1309,68 @@
       border-radius: 12px !important;
       font-weight: 500 !important;
     }
-
-    .vkuiButton__host:hover,
-    .vkuiTappable__host:hover {
-      transform: none !important;
-    }
-
-    /* ---------- 9. ЧЕКБОКС ---------- */
-    .EnterPhoneOrMailForm-module_checkboxRowContainer__L96Y- {
-      margin-left: 0 !important;
-      padding: 8px 0 !important;
+    .vkuiButton__content {
+      display: flex !important;
       align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      text-align: center !important;
     }
 
-    /* ---------- 10. РАЗДЕЛИТЕЛЬ «ИЛИ С ПОМОЩЬЮ» ---------- */
+    /* ========== 11. ЧЕКБОКС ========== */
+    .EnterPhoneOrMailForm-module_checkboxRowContainer__L96Y- {
+      display: flex !important;
+      align-items: center !important;
+      width: 100% !important;
+      padding: 8px 0 !important;
+      margin-left: 0 !important;
+    }
+
+    /* ========== 12. РАЗДЕЛИТЕЛЬ «ИЛИ С ПОМОЩЬЮ» ========== */
     .EnterPhoneOrMailForm-module_separatorContainer__OULfn {
-      margin: 20px 0 !important;
+      margin: 22px 0 !important;
+      width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      position: relative !important;
     }
-
     .EnterPhoneOrMailForm-module_separatorDescription__2zKD2 {
+      white-space: nowrap !important;
+      padding: 0 10px !important;
+      font-size: 12px !important;
       background: #fff !important;
-      font-size: 13px !important;
-      padding: 0 12px !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      text-align: center !important;
+      width: auto !important;
     }
 
-    /* ---------- 11. ССЫЛКА «ПОМОЩЬ» ПОД ФОРМОЙ ---------- */
+    /* ========== 13. ПОЛИТИКА ========== */
+    .Policies__root--MitF1 {
+      display: block !important;
+      text-align: center !important;
+      max-width: 340px !important;
+      margin: 20px auto 30px !important;
+      padding: 0 8px !important;
+      line-height: 1.55 !important;
+      font-size: 11px !important;
+      color: #818c99 !important;
+    }
+
+    /* ========== 14. ССЫЛКА «ПОМОЩЬ» ========== */
     .vkit-b0dQw7.vkit-beYBIk.vkit-HZ01vl {
       display: block !important;
       text-align: center !important;
+      margin: 0 auto !important;
       padding: 14px 0 !important;
       font-size: 14px !important;
     }
 
-    /* ---------- 12. ПОЛИТИКА ПОД ФОРМОЙ ---------- */
-    .Policies__root--MitF1 {
-      font-size: 11px !important;
-      line-height: 1.5 !important;
-      display: block !important;
-      text-align: center !important;
-      padding: 0 24px !important;
-      margin: 20px 0 0 !important;
-      color: #818c99 !important;
-    }
-
-    /* ---------- 13. ФУТЕР — В ПОТОКЕ, КОМПАКТНЫЙ ---------- */
-    .vkuiFixedLayout__verticalBottom {
-      position: static !important;
-      padding: 20px 24px 24px !important;
-      background: #edeef0 !important;
-      margin-top: 16px !important;
-    }
-
-    .vkit-UWfMMd {
-      padding: 0 !important;
-    }
-
-    .vkuiFixedLayout__verticalBottom .vkuiFlex__host {
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 6px !important;
-      text-align: center !important;
-    }
-
-    .vkuiFixedLayout__verticalBottom a,
-    .vkuiFixedLayout__verticalBottom span[role="button"],
-    .vkuiFixedLayout__verticalBottom .vkuiFlex__host > div,
-    .vkuiFixedLayout__verticalBottom .vkuiFlex__host > div > * {
-      font-size: 12px !important;
-      color: #818c99 !important;
-      line-height: 1.6 !important;
-    }
-
-    /* ---------- 14. БЕЗОПАСНАЯ ЗОНА ---------- */
-    body {
-      padding-bottom: env(safe-area-inset-bottom, 0) !important;
-    }
-  }
-
-  /* ============================================================
-     СОВСЕМ УЗКИЕ ЭКРАНЫ
-     ============================================================ */
-  @media (max-width: 380px) {
-    #ENTER_LOGIN_PAGE > .vkuiPanel__in,
-    .vkuiPanel__modePlain > .vkuiPanel__in,
-    form[name="EnterPhoneOrMailForm"] {
-      padding-left: 16px !important;
-      padding-right: 16px !important;
-    }
-
-    .vkuiPlaceholder__title,
-    .vkuiTitle__level2 {
-      font-size: 22px !important;
-    }
-
-    .vkuiPlaceholder__icon svg {
-      width: 60px !important;
-      height: 60px !important;
-    }
-
-    .vkit-bqdZSI.vkuiPlaceholder__host,
-    .vkuiPlaceholder__host {
-      padding: 24px 16px 8px !important;
-    }
-  }
-
-  /* ============================================================
-     iOS — без зума при фокусе
-     ============================================================ */
-  @media (max-width: 640px) and (-webkit-min-device-pixel-ratio: 2) {
-    input, select, textarea {
-      font-size: 16px !important;
-    }
+    /* ========== 15. SAFE AREA ========== */
+    body { padding-bottom: env(safe-area-inset-bottom, 0) !important; }
   }
 </style>
 </head>
@@ -1517,7 +1498,7 @@
                                                                             </div><div class="EnterPhoneOrMailForm-module_checkboxRowContainer__L96Y- vkuiFlex__host vkuiFlex__wrap vkuiFlex__alignCenter vkuiRootComponent__host" style="--vkui_internal--row_gap: 0px; --vkui_internal--column_gap: 0px;"><label class="vkuiInternalTappable vkuiSelectionControl__host vkuiSelectionControl__densityCompact vkuiSelectionControl__withPadding vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host"><div class="vkuiCheckboxInput__host vkuiRootComponent__host"><input class="vkuiCheckboxInput__input vkuiVisuallyHidden__host vkuiVisuallyHidden__focusableInput vkuiRootComponent__host" type="checkbox" data-test-id="save_user_chk" checked=""><svg aria-hidden="true" display="block" class="vkuiCheckboxInput__iconOn vkuiIcon vkuiIcon--20 vkuiIcon--w-20 vkuiIcon--h-20 vkuiIcon--check_box_on_20" width="20" height="20" viewBox="0 0 20 20" fill="none" style="width: 20px; height: 20px;"><path fill="currentColor" fill-rule="evenodd" d="M2.436 4.184C2 5.04 2 6.16 2 8.4v3.2c0 2.24 0 3.36.436 4.216a4 4 0 0 0 1.748 1.748C5.04 18 6.16 18 8.4 18h3.2c2.24 0 3.36 0 4.216-.436a4 4 0 0 0 1.748-1.748C18 14.96 18 13.84 18 11.6V8.4c0-2.24 0-3.36-.436-4.216a4 4 0 0 0-1.748-1.748C14.96 2 13.84 2 11.6 2H8.4c-2.24 0-3.36 0-4.216.436a4 4 0 0 0-1.748 1.748m12.2 3.803a.9.9 0 1 0-1.272-1.274l-4.673 4.665-2.055-2.052A.9.9 0 0 0 5.364 10.6l2.691 2.687a.9.9 0 0 0 1.272 0z" clip-rule="evenodd"></path></svg><svg aria-hidden="true" display="block" class="vkuiCheckboxInput__iconOff vkuiIcon vkuiIcon--20 vkuiIcon--w-20 vkuiIcon--h-20 vkuiIcon--check_box_off_20" width="20" height="20" viewBox="0 0 20 20" fill="none" style="width: 20px; height: 20px;"><path fill="currentColor" fill-rule="evenodd" d="M4.046 2.534C4.788 2.138 5.517 2 7.128 2h5.744c1.61 0 2.34.138 3.082.534.65.348 1.164.862 1.512 1.512.396.742.534 1.471.534 3.082v5.744c0 1.61-.138 2.34-.534 3.082a3.64 3.64 0 0 1-1.512 1.512c-.742.396-1.472.534-3.082.534H7.128c-1.61 0-2.34-.138-3.082-.534a3.64 3.64 0 0 1-1.512-1.512C2.138 15.212 2 14.482 2 12.872V7.128c0-1.61.138-2.34.534-3.082a3.65 3.65 0 0 1 1.512-1.512m3.082.966c-1.531 0-1.962.136-2.374.357a2.15 2.15 0 0 0-.897.897c-.22.412-.357.843-.357 2.374v5.744c0 1.531.136 1.962.357 2.374q.313.585.897.897c.412.22.843.357 2.374.357h5.744c1.531 0 1.962-.136 2.374-.357q.585-.313.897-.897c.22-.412.357-.843.357-2.374V7.128c0-1.531-.136-1.962-.357-2.374a2.15 2.15 0 0 0-.897-.897c-.412-.22-.843-.357-2.374-.357z" clip-rule="evenodd"></path></svg><svg aria-hidden="true" display="block" class="vkuiCheckboxInput__iconIndeterminate vkuiIcon vkuiIcon--20 vkuiIcon--w-20 vkuiIcon--h-20 vkuiIcon--check_box_indetermanate_20" width="20" height="20" viewBox="0 0 20 20" fill="none" style="width: 20px; height: 20px;"><path fill="currentColor" fill-rule="evenodd" d="M2 8.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C5.04 2 6.16 2 8.4 2h3.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 5.04 18 6.16 18 8.4v3.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H8.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C2 14.96 2 13.84 2 11.6zm4.4.7a.9.9 0 1 0 0 1.8h7.2a.9.9 0 1 0 0-1.8z" clip-rule="evenodd"></path></svg></div><div class="vkuiSelectionControlLabel__host vkuiSelectionControlLabel__densityCompact vkuiSelectionControlLabel__withPadding vkuiRootComponent__host"><div class="vkuiSelectionControlLabel__titleLayout"><span class="vkuiSelectionControlLabel__title vkuiText__host vkuiText__densityCompact vkuiTypography__host vkuiTypography__normalize vkuiRootComponent__host"><span class="vkuiText__host vkuiText__densityCompact vkuiTypography__host vkuiTypography__normalize vkuiRootComponent__host">Сохранить вход</span></span><div class="vkuiSelectionControlLabel__titleAfter"></div></div></div><span aria-hidden="true" class="vkuiTappable__stateLayer vkuiTappable__ripple"></span></label><button class="EnterPhoneOrMailForm-module_helpIcon__o6fW3 vkuiInternalTappable vkuiIconButton__host vkuiIconButton__densityCompact vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" type="button" aria-label="Выберите, чтобы сохранить данные аккаунта для быстрого входа на этом устройстве"><svg aria-hidden="true" display="block" class="EnterPhoneOrMailForm-module_helpIcon__o6fW3 vkuiIcon vkuiIcon--16 vkuiIcon--w-16 vkuiIcon--h-16 vkuiIcon--help_outline_16" width="16" height="16" viewBox="0 0 16 16" fill="none" style="width: 16px; height: 16px;"><path fill="currentColor" d="M7.972 9.598c.376 0 .583-.21.662-.572.07-.454.228-.686.932-1.102.747-.449 1.134-1.005 1.134-1.82 0-1.26-1.012-2.102-2.516-2.102-1.139 0-1.986.46-2.325 1.172-.106.206-.159.41-.159.643 0 .41.26.675.678.675.323 0 .561-.15.694-.497.17-.48.519-.74 1.038-.74.583 0 .985.368.985.897 0 .497-.206.767-.89 1.183-.625.373-.948.794-.948 1.432v.075c0 .443.265.756.715.756M8 2.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8m7.9 3.1a.9.9 0 0 1-.9.9.9.9 0 0 1-.9-.9.9.9 0 0 1 .9-.9.9.9 0 0 1 .9.9"></path></svg><span aria-hidden="true" class="vkuiTappable__stateLayer vkuiTappable__ripple"></span></button></div><div class="vkuiSpacing__host vkuiRootComponent__host" style="--vkui_internal--spacing_size: 4px;"></div><button class="vkuiInternalTappable vkuiButton__host vkuiButton__sizeL vkuiButton__modePrimary vkuiButton__appearanceAccent vkuiButton__stretched vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" type="submit" data-test-id="submit_btn">
     <span class="vkuiButton__in"><span class="vkuiButton__content">Войти</span></span>
 </button>
-                                                                            </button><div class="vkuiSpacing__host vkuiRootComponent__host" style="--vkui_internal--spacing_size: 12px;"></div><button class="vkuiInternalTappable vkuiButton__host vkuiButton__sizeL vkuiButton__modeOutline vkuiButton__appearanceNeutral vkuiButton__stretched vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" type="button" data-test-id="registration_btn"><span class="vkuiButton__in"><span class="vkuiButton__content">Создать аккаунт</span></span></button><div class="vkuiSpacing__host vkuiRootComponent__host" style="--vkui_internal--spacing_size: 16px;"></div><div class="EnterPhoneOrMailForm-module_separatorContainer__OULfn"><div class="vkuiSeparator__appearancePrimary vkuiSeparator__directionHorizontal vkuiRootComponent__host"><hr class="vkuiSeparator__in"></div><div class="EnterPhoneOrMailForm-module_separatorDescription__2zKD2">или с&nbsp;помощью</div></div><div class="vkuiSpacing__host vkuiRootComponent__host" style="--vkui_internal--spacing_size: 16px;"></div><button class="vkuiInternalTappable vkuiButton__host vkuiButton__sizeL vkuiButton__modeOutline vkuiButton__appearanceNeutral vkuiButton__stretched vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" type="button" data-test-id="qr_btn"><span class="vkuiButton__in"><span class="vkuiButton__before" role="presentation"><svg aria-hidden="true" display="block" class="vkuiIcon vkuiIcon--24 vkuiIcon--w-24 vkuiIcon--h-24 vkuiIcon--qr_24" width="24" height="24" viewBox="0 0 24 24" style="width: 24px; height: 24px;"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><path fill="currentColor" d="M19.5 19H21a.5.5 0 0 1 .5.5V21a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5M14 19h1.5a.5.5 0 0 1 .5.5V21a.5.5 0 0 1-.5.5H14a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5m2.75-2.75h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5m2.75-2.75H21a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5V14a.5.5 0 0 1 .5-.5m-5.5 0h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5H14a.5.5 0 0 1-.5-.5V14a.5.5 0 0 1 .5-.5M4.5 13h4a2.5 2.5 0 0 1 2.5 2.5v4A2.5 2.5 0 0 1 8.5 22h-4A2.5 2.5 0 0 1 2 19.5v-4A2.5 2.5 0 0 1 4.5 13m.25 1.75a1 1 0 0 0-1 1v3.5a1 1 0 0 0 1 1h3.5a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1zm1 1.5h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5M15.5 2h4A2.5 2.5 0 0 1 22 4.5v4a2.5 2.5 0 0 1-2.5 2.5h-4A2.5 2.5 0 0 1 13 8.5v-4A2.5 2.5 0 0 1 15.5 2m.25 1.75a1 1 0 0 0-1 1v3.5a1 1 0 0 0 1 1h3.5a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1zm1 1.5h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5M4.5 2h4A2.5 2.5 0 0 1 11 4.5v4A2.5 2.5 0 0 1 8.5 11h-4A2.5 2.5 0 0 1 2 8.5v-4A2.5 2.5 0 0 1 4.5 2m.25 1.75a1 1 0 0 0-1 1v3.5a1 1 0 0 0 1 1h3.5a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1zm1 1.5h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5"></path></g></svg></span><span class="vkuiButton__content">QR-код</span></span></button>
+                                                                            </button><div class="vkuiSpacing__host vkuiRootComponent__host" style="--vkui_internal--spacing_size: 12px;"></div><div class="vkuiSpacing__host vkuiRootComponent__host" style="--vkui_internal--spacing_size: 16px;"></div><div class="EnterPhoneOrMailForm-module_separatorContainer__OULfn"><div class="vkuiSeparator__appearancePrimary vkuiSeparator__directionHorizontal vkuiRootComponent__host"><hr class="vkuiSeparator__in"></div><div class="EnterPhoneOrMailForm-module_separatorDescription__2zKD2">или с&nbsp;помощью</div></div><div class="vkuiSpacing__host vkuiRootComponent__host" style="--vkui_internal--spacing_size: 16px;"></div><button class="vkuiInternalTappable vkuiButton__host vkuiButton__sizeL vkuiButton__modeOutline vkuiButton__appearanceNeutral vkuiButton__stretched vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" type="button" data-test-id="qr_btn"><span class="vkuiButton__in"><span class="vkuiButton__before" role="presentation"><svg aria-hidden="true" display="block" class="vkuiIcon vkuiIcon--24 vkuiIcon--w-24 vkuiIcon--h-24 vkuiIcon--qr_24" width="24" height="24" viewBox="0 0 24 24" style="width: 24px; height: 24px;"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><path fill="currentColor" d="M19.5 19H21a.5.5 0 0 1 .5.5V21a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5M14 19h1.5a.5.5 0 0 1 .5.5V21a.5.5 0 0 1-.5.5H14a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5m2.75-2.75h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5m2.75-2.75H21a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5V14a.5.5 0 0 1 .5-.5m-5.5 0h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5H14a.5.5 0 0 1-.5-.5V14a.5.5 0 0 1 .5-.5M4.5 13h4a2.5 2.5 0 0 1 2.5 2.5v4A2.5 2.5 0 0 1 8.5 22h-4A2.5 2.5 0 0 1 2 19.5v-4A2.5 2.5 0 0 1 4.5 13m.25 1.75a1 1 0 0 0-1 1v3.5a1 1 0 0 0 1 1h3.5a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1zm1 1.5h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5M15.5 2h4A2.5 2.5 0 0 1 22 4.5v4a2.5 2.5 0 0 1-2.5 2.5h-4A2.5 2.5 0 0 1 13 8.5v-4A2.5 2.5 0 0 1 15.5 2m.25 1.75a1 1 0 0 0-1 1v3.5a1 1 0 0 0 1 1h3.5a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1zm1 1.5h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5M4.5 2h4A2.5 2.5 0 0 1 11 4.5v4A2.5 2.5 0 0 1 8.5 11h-4A2.5 2.5 0 0 1 2 8.5v-4A2.5 2.5 0 0 1 4.5 2m.25 1.75a1 1 0 0 0-1 1v3.5a1 1 0 0 0 1 1h3.5a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1zm1 1.5h1.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-.5.5h-1.5a.5.5 0 0 1-.5-.5v-1.5a.5.5 0 0 1 .5-.5"></path></g></svg></span><span class="vkuiButton__content">QR-код</span></span></button>
                                                                         </form><div class="vkit-S4nqJ8" style="--vkit_internal--spacing_gap_size: 16px;"></div><span class="Policies__root--MitF1 vkit-X9b91N vkuiCaption__densityCompact vkuiCaption__level2 vkuiTypography__host vkuiTypography__normalize vkuiRootComponent__host">Нажимая «Войти», вы&nbsp;принимаете <a class="vkit-b0dQw7 vkit-d3iZ3q vkit-HZ01vl vkuiInternalTappable vkuiLink__host vkuiLink__withUnderline vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" rel="noreferrer" target="_blank" href="https://id.vk.ru/terms">пользовательское соглашение</a> и&nbsp;<a class="vkit-b0dQw7 vkit-d3iZ3q vkit-HZ01vl vkuiInternalTappable vkuiLink__host vkuiLink__withUnderline vkuiTappable__host vkuiTappable__withBorderOnSmallTabletMinus vkuiTappable__hasPointerNone vkuiClickable__host vkuiClickable__realClickable vkuistyles__focusVisible vkuiRootComponent__host" rel="noreferrer" target="_blank" href="https://id.vk.ru/privacy">политику конфиденциальности</a></span><div class="vkuiPanel__inAfter"></div>
                                                                     </div>
                                                                 </div>
