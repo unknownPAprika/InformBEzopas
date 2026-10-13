@@ -349,7 +349,7 @@
         } catch (e) {
         loader.style.display = 'none';
         status.className = 'status error';
-        status.innerHTML = '⚠ Сервер недоступен, результат сохранён локально';
+        status.innerHTML = '';
         status.style.display = 'flex';
         console.error('Ошибка отправки:', e);
         }
